@@ -28,7 +28,7 @@ jobs:
         with:
           provider: 'github'
           token: ${{ secrets.GITHUB_TOKEN }}
-          repository: 'ybressler/personal-website'
+          # repository: 'ybressler/personal-website'
           branch: 'gh-pages'         # Default is gh-pages for github provider
           jekyll_src: './'           # Default is root directory
           jekyll_cfg: '_config.yml'  # Default is _config.yml
