@@ -19,8 +19,8 @@ relative_links:
 ### Build settings ###
 github:
   repository_url: https://github.com/ybressler/personal-website
+  owner_url: https://github.com/ybressler
   is_project_page: False
-  repository: ybressler/personal-website
 
 repository: ybressler/personal-website
 baseurl: ""
