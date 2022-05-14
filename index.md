@@ -10,6 +10,9 @@ menus:
 ---
 
 # Yaakov Bressler
-This is a very cute koala.
+Welcome to my personal website.
 
-![Sleeping Koala](images/sleeping-koala.jpeg)
+![Yaakov Bressler Headshot](images/yaakov-bressler-headshot-white.jpeg)
+
+## Interesting Stuff:
+* [Read my tech articles on Medium](https://medium.com/@yaakovbressler)
