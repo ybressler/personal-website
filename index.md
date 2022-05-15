@@ -14,5 +14,5 @@ Welcome to my personal website.
 
 ![Yaakov Bressler Headshot](images/yaakov-bressler-headshot-white.jpeg)
 
-## Interesting Stuff:
+## Interesting Stuff: <i class="fas fa-star"></i>
 * [Read my tech articles on Medium](https://medium.com/@yaakovbressler)
