@@ -1,9 +1,6 @@
 theme: jekyll-theme-minimal
 title: Yaakov Bressler Personal Site
 description: Welcome to my personal website! (This site is a stub for future work.)
-
-# google_analytics: UA-177940998-1
-# logo: images/koala-time-logo.png
 logo_alt: Koala Time Logo
 plugins:
   - jekyll-seo-tag
@@ -21,6 +18,7 @@ github:
   repository_url: https://github.com/ybressler/personal-website
   owner_url: https://github.com/ybressler
   is_project_page: False
+  is_user_page: True
 
 repository: personal-website
 baseurl: ""
