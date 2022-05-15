@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  {% include head.html %}
+  <body>
+      {% include sparkly_header.html %}
+
+    <div class="flex-wrapper">
+    <div class="wrapper">
+      <section id="main">
+        {{ content }}
+      </section>
+    </div>
+    </div>
+
+    <div class="button-center-wrapper">
+      <button class="pill">
+      <a href="{{ '/' | relative_url }}">
+        Vanilla version of site
+      </a>
+      </button>
+    </div>
+
+
+    {% include footer.html %}
+  </body>
+</html>

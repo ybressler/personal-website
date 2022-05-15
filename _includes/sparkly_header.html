@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="{{ "/assets/css/sparkly-header.css?v=" | append: site.github.build_revision | relative_url }}">
+
+<div id="particles-js">
+  <div class="header">
+
+      <div class="headshot">
+        <img src="images/yaakov-bressler-headshot-white-square.jpeg" alt="My Headshot">
+      </div>
+
+      <h1>
+        <span class="site-title">{{ site.username }}</span>
+        <span class="site-description">{{ site.user_description }}</span>
+      </h1>
+      <div class="header-icons">
+        {% if site.email %}
+        <a aria-label="Send email" href="mailto:{{ site.email }}"><i class="icon fa fa-envelope"></i></a>
+        {% elsif site.email_form %}
+        <a aria-label="Send email" href="{{ site.email_form }}"><i class="icon fa fa-envelope"></i></a>
+        {% endif %}
+        {% if site.twitter_username %}
+        <a aria-label="My Twitter" target="_blank" href="https://twitter.com/{{ site.twitter_username }}"><i class="icon fa fa-twitter" aria-hidden="true"></i></a>
+        {% endif %}
+        {% if site.instagram_username %}
+        <a aria-label="My Instagram" target="_blank" href="https://www.instagram.com/{{ site.instagram_username }}"><i class="icon fa fa-instagram" aria-hidden="true"></i></a>
+        {% endif %}
+        {% if site.facebook_username %}
+        <a aria-label="My Facebook" target="_blank" href="https://www.facebook.com/{{ site.facebook_username }}"><i class="icon fa fa-facebook" aria-hidden="true"></i></a>
+        {% endif %}
+        {% if site.linkedin_username %}
+        <a aria-label="My LinkedIn" target="_blank" href="https://www.linkedin.com/in/{{ site.linkedin_username }}"><i class="icon fa fa-linkedin-square" aria-hidden="true"></i></a>
+        {% endif %}
+        {% if site.github_username %}
+        <a aria-label="My Github" target="_blank" href="https://github.com/{{ site.github_username }}"><i class="icon fa fa-github-alt" aria-hidden="true"></i></a>
+        {% endif %}
+        {% if site.medium_url %}
+        <a aria-label="My Medium" target="_blank" href="{{ site.medium_url }}"><i class="icon fa fa-medium" aria-hidden="true"></i></a>
+        {% endif %}
+      </div>
+      <div class="header-links">
+        <!-- <a class="link" href="#about" data-scroll>About Me</a> -->
+      </div>
+  </div>
+  <a class="down" href="#main" data-scroll><i class="icon fa fa-chevron-down" aria-hidden="true"></i></a>
+</div>

@@ -16,3 +16,12 @@ Welcome to my personal website.
 
 ## Interesting Stuff: <i class="fas fa-star"></i>
 * [Read my tech articles on Medium](https://medium.com/@yaakovbressler)
+
+
+<div class="button-center-wrapper">
+  <button class="pill">
+  <a href="{{ '/home' | relative_url }}">
+    SPICY version of site
+  </a>
+  </button>
+</div>
