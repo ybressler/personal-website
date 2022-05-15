@@ -20,7 +20,7 @@ github:
   is_project_page: False
   is_user_page: True
 
-repository: personal-website
+repository: ybressler/personal-website
 baseurl: ""
 
 # SEO Stuff
