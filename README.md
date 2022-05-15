@@ -48,6 +48,6 @@ bundle exec jekyll serve
 ## Note:
 When deploying, you must grant Github Actions `Read and write permissions`.
 This can be found under `settings` > `actions` > `general` > `workflow permissions`.
-See the screenshot for reference: ![](images/github-actions-settings.png x250)
+See the screenshot for reference: ![](images/github-actions-settings.png){:height="100px"}.
 
 <br>
