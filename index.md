@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: home
 title: Home
 menus:
   header:
@@ -8,20 +8,22 @@ menus:
     skip_title: true
     weight: 1
 ---
-
 # Yaakov Bressler
 Welcome to my personal website.
-
-![Yaakov Bressler Headshot](images/yaakov-bressler-headshot-white.jpeg)
 
 ## Interesting Stuff: <i class="fas fa-star"></i>
 * [Read my tech articles on Medium](https://medium.com/@yaakovbressler)
 
 
-<div class="button-center-wrapper">
-  <button class="pill">
-  <a href="{{ '/home' | relative_url }}">
-    SPICY version of site
-  </a>
-  </button>
-</div>
+### More things
+Hi!
+
+# Sup
+How u doing
+
+
+## Pretty good
+Sweet
+
+{% assign pill_button = "about|More Info" | split: "|" %}
+{% include pill_buttons.html %}

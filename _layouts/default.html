@@ -2,34 +2,17 @@
 <html lang="{{ site.lang | default: "en-US" }}">
   {% include head.html %}
   <body>
-    <div class="wrapper">
-      <header>
 
-        {% if site.logo %}
-          <a href="{{ "/" | absolute_url }}">
-            <img src="{{site.logo | relative_url}}" alt="{{ site.logo_alt }}"/>
-          </a>
-        {% else %}
-          <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
-        {% endif %}
+    {% include regular_header.html %}
 
-        <p>{{ site.description | default: site.github.project_tagline }}</p>
 
-        <nav>
-          {% assign menu = site.menus.header %}
-          {% include menus.html %}
-        </nav>
-        <hr>
-        {% include github_stuff.html is_root_level = true %}
-
-      </header>
-      <section>
-
+    <div class="centered-container">
+    <section id="main">
       {{ content }}
-
-      </section>
-      {% include footer.html %}
+    </section>
     </div>
-    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+
+    {% include footer.html %}
+    
   </body>
 </html>

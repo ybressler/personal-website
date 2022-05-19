@@ -1,0 +1,15 @@
+<section id="regular-header">
+  <div class="header">
+    <div id="site-title">
+    <a href="{{ "/" | absolute_url }}">
+      <h1>{{ site.username }}</h1>
+    </a>
+    </div>
+
+  <nav>
+    {% assign menu = site.menus.header %}
+    {% include menus.html %}
+  </nav>
+
+</div>
+</section>

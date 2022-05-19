@@ -1,0 +1,10 @@
+{%- if pill_button -%}
+
+<div class="button-center-wrapper">
+    <button class="pill">
+    <a href="{{ pill_button[0] }}" title="Go to {{ pill_button[1] }}">
+      {{ pill_button[1] }}
+    </a>
+    </button>
+  </div>
+{% endif %}

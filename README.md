@@ -8,10 +8,8 @@ Stub for later work
 * Jekyll menu: https://github.com/forestryio/jekyll-menus
 
 ## Theme
-
-* Current theme: [jekyll-theme-minimal](https://github.com/pages-themes/minimal)
-* Another good theme?: https://github.com/jekyll/minima
-* Look into this (to better deploy the site): https://github.com/jeffreytse/jekyll-deploy-action
+Using this theme: https://github.com/murraco/jekyll-theme-minimal-resume.
+But am thinking about packaging into my own.
 
 ## Components:
 To create callouts, use the following syntax:
@@ -45,9 +43,20 @@ bundle exec jekyll serve
 
 ---
 
-## Note:
-When deploying, you must grant Github Actions `Read and write permissions`.
+## NOTES:
+1. Since this site uses non-whitelisted packages and themes
+you must deploy using this CI workflow: https://github.com/jeffreytse/jekyll-deploy-action.
+
+  Deployment script located here: [`.github/worfklows/build-jekyll.yml`](.github/workflows/build-jekyll.yml)
+
+
+2. When deploying, you must grant Github Actions `Read and write permissions`.
 This can be found under `settings` > `actions` > `general` > `workflow permissions`.
-See the screenshot for reference: ![](images/github-actions-settings.png)
+See the screenshot for reference:
+
+  ![](images/github-actions-settings.png)
+
+
+
 
 <br>
