@@ -13,7 +13,7 @@
         {% if site.email %}
         <a aria-label="Send email" href="mailto:{{ site.email }}"><i class="icon fa fa-envelope"></i></a>
         {% elsif site.email_form %}
-        <a aria-label="Send email" href="{{ site.email_form }}"><i class="icon fa fa-envelope"></i></a>
+        <a aria-label="Send email" target="_blank" href="{{ site.email_form }}"><i class="icon fa fa-envelope"></i></a>
         {% endif %}
         {% if site.twitter_username %}
         <a aria-label="My Twitter" target="_blank" href="https://twitter.com/{{ site.twitter_username }}"><i class="icon fa fa-twitter" aria-hidden="true"></i></a>
