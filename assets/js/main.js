@@ -137,3 +137,13 @@ $('section#sparkly-header .site-title').sparkleHover({
     });
 
 $('section#sparkly-header .site-description').sparkleHover();
+
+
+$('section#sparkly-header a.down').sparkleHover({
+      colors : ['#9DA0A5', "#B4B7BA",'#5D636A', '#297E97'],
+      num_sprites: 20,
+      lifespan: 1000,
+      radius: 200,
+      sprite_size: 5,
+      shape: 'circle',
+    });
