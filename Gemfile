@@ -4,8 +4,6 @@ gem 'rdiscount'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
-require 'dotenv/load'
-
 group :jekyll_plugins do
   gem "jekyll-remote-theme"
   gem "github-pages"
