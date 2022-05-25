@@ -2,10 +2,14 @@ source 'https://rubygems.org'
 gem 'jekyll'
 gem 'rdiscount'
 
+gem 'dotenv-rails', groups: [:development, :test]
+
+require 'dotenv/load'
+
 group :jekyll_plugins do
   gem "jekyll-remote-theme"
   gem "github-pages"
   gem "jekyll-menus"
   gem "jekyll-relative-links"
-  gem "jekyll-github-metadata"
+  gem "jekyll-seo-tag"
 end

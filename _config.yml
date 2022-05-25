@@ -1,7 +1,27 @@
 # theme: jekyll-theme-minimal
-title: Yaakov Bressler Personal Site
-description: Welcome to my personal website! (This site is a stub for future work.)
-url: https://yaakovbressler.com
+username: Yaakov Bressler
+user_description: Data Engineer
+
+# Social Links
+twitter_username: yaakovbressler
+linkedin_username: yaakovbressler
+github_username:  ybressler
+medium_username: yaakovbressler
+medium_url: https://yaakovbressler.medium.com/
+email_form: https://forms.gle/a6KE7kDWwtu9AVjP7
+
+
+### Build settings ###
+baseurl: ""  # If you are not using a custom URL, remove this
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-menus
+  - jekyll-remote-theme
+  - jekyll-relative-links
+  - jekyll-github-metadata
+
+cname: yaakovbressler.com
 
 relative_links:
   enabled:     true
@@ -10,36 +30,20 @@ relative_links:
 kramdown:
     auto_ids: true
 
-### Build settings ###
-plugins:
-  - jekyll-seo-tag
-  - jekyll-menus
-  - jekyll-remote-theme
-  - jekyll-relative-links
-  - jekyll-github-metadata
 
-github:
-  repository_url: https://github.com/ybressler/personal-website
-  repository_name: YB Personal Site
-  owner_url: https://github.com/ybressler
-  is_project_page: False
-  is_user_page: True
+### SEO Stuff ###
+title: Yaakov Bressler
+tagline: Data Engineer
+description: My personal website
+url: yaakovbressler.com
 
-repository: ybressler/personal-website
-baseurl: ""
-
-# SEO Stuff
 twitter:
   username: yaakovbressler
   card: summary
 
-# User settings
-username: Yaakov Bressler
-user_description: Data Engineer
-
-twitter_username: yaakovbressler
-linkedin_username: yaakovbressler
-github_username:  ybressler
-medium_username: yaakovbressler
-medium_url: https://yaakovbressler.medium.com/
-email_form: https://forms.gle/a6KE7kDWwtu9AVjP7
+social:
+  name: Yaakov Bressler
+  links:
+    - https://yaakovbressler.medium.com/
+    - https://www.linkedin.com/in/yaakovbressler
+    - https://github.com/ybressler
