@@ -9,7 +9,7 @@ menus:
     weight: 1
 ---
 # Yaakov Bressler
-Welcome to my personal website.
+I am a data engineer who's passionate about building data platforms.
 
 ## Interesting Stuff: <i class="fas fa-star"></i>
 * [Read my tech articles on Medium](https://medium.com/@yaakovbressler)
