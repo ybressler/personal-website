@@ -1,0 +1,16 @@
+- name: Open Broadway Data
+  about: "Open Broadway Data is an open data platform which
+    aims to collect, display, and analyze data from all
+      Broadway shows since 1738."
+  url: https://openbroadwaydata.com/
+  logo: images/open-broadway-data-logo.png
+- name: Artists Who Code
+  about: "A community and mentorship organization for artists who have
+    (or are working toward) a career in the tech industry."
+  url: https://www.linkedin.com/company/artistswhocode/
+  logo: images/artists-who-code-logo.jpeg
+- name: Koala Time
+  about: "A fatigue management app for Apple Watch to help people
+    recovering from severe illness (or a TBI) live a normal life."
+  url: http://koalatime.app/
+  logo: images/koala-time-logo.png
