@@ -15,11 +15,12 @@
       sprite_size: 10,
       shape: 'circle',
       gravity: 'false',
+      action: 'click'
     }
 
 
 
-    var opts = $.extend({}, defaultOptions, opts);
+  var opts = $.extend({}, defaultOptions, opts);
 
 
     var $target = this,
@@ -30,25 +31,36 @@
     sprite_size = opts.sprite_size,
     shape = opts.shape.toLowerCase(),
     gravity = opts.gravity,
+    action = opts.action,
     image = opts.image,
     lifespan = opts.lifespan,
     fadetoOpacity = 100;
 
-    //on hover of this,
-  $target.click( function(){
+    $target.on(action, function(e){
 
-      if (gravity == "true"){
-        var centerX = $(this).width()/2 + $(this).offset().left;
-        var centerY = $(this).offset().top;
-      } else {
-        var centerX = $(this).width()/2 + $(this).offset().left;
-        var centerY = $(this).offset().top+ $(this).height()/2;
-      }
+        // Get location of the thingy
+        var elem = $(this);
+        // var xPos = e.pageX - elem.offset().left;
+        // var yPos = e.pageY - elem.offset().top;
 
-      makeSprites(centerX, centerY)
+        var centerX = e.pageX
+        var centerY = e.pageY
+        // if (gravity == "true"){
+        //   var centerX = elem.width()/2 + elem.offset().left;
+        //   var centerY = elem.offset().top;
+        // }
+        // else {
+        //   var centerX = elem.width()/2 + elem.offset().left;
+        //   var centerY = elem.offset().top+ elem.height()/2;
+        // }
 
+        // console.log(centerX, centerY);
+        // console.log(e.pageX, e.pageY);
+        // makeSprites(centerX, centerY)
+        makeSprites(e.pageX, e.pageY)
 
-  });
+    });
+
 
   function makeSprites(centerX, centerY){
     for (var i=0; i < num_sprites; i++){

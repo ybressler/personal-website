@@ -133,7 +133,7 @@ $('section#sparkly-header .site-title').sparkleHover({
       lifespan: 3000,
       radius: 500,
       sprite_size: 40,
-      shape: 'circle',
+      shape: 'circle'
     });
 
 $('section#sparkly-header .site-description').sparkleHover();
@@ -146,4 +146,14 @@ $('section#sparkly-header a.down').sparkleHover({
       radius: 200,
       sprite_size: 5,
       shape: 'circle',
+    });
+
+$('section#sparkly-header').sparkleHover({
+      colors : ['#9DA0A5', "#B4B7BA",'#5D636A'],
+      num_sprites: 10,
+      lifespan: 750,
+      radius: 50,
+      sprite_size: 4,
+      shape: 'circle',
+      action: 'click',
     });
