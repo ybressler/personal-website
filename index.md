@@ -10,8 +10,8 @@ menus:
 ---
 # The Truth Matters 💡
 The truth is only as relevant as it can be proven. Data as a systemisation of
-truth can be used to achieve parity, prosperity, and justice. It is my passion
-- and life's mission to build data systems + data platforms to protect, secure,
+truth can be used to achieve parity, prosperity, and justice. It is my passion -
+and life's mission to build data systems + data platforms to protect, secure,
 and deliver "the truth."
 
 # I am an autodidact 🎉
