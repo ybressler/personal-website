@@ -1,13 +1,22 @@
+
 <section id="sparkly-header">
+
+
   <div class="header">
 
-      <div class="headshot">
+
+
+      <div class="fun-hover headshot">
         <img src="images/yaakov-bressler-headshot-white-square.jpeg" alt="My Headshot">
       </div>
 
       <h1>
-        <span class="site-title">{{ site.username }}</span>
-        <span class="site-description">{{ site.user_description }}</span>
+        <div class="fun-hover" id="site-title">
+          <span class="site-title">{{ site.username }}</span>
+        </div>
+        <div class="fun-hover" id="site-description">
+          <span class="site-description">{{ site.user_description }}</span>
+        </div>
       </h1>
       <div class="header-icons">
         {% if site.email %}
