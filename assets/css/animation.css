@@ -35,24 +35,24 @@
 }
 
 
-.fun-hover.on{
-  animation: gelatine 1.5s 1.5 ease;
+.fun-hover:hover{
+  animation-name: gelatine;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-delay: 1.5;
   animation-play-state: running;
 }
 
 .fun-hover{
   animation-play-state: paused;
-  transform: initial;
 }
 
-.fun-hover.headshot.on{
-  animation: gelatine 2.0s 2.0;
+.fun-hover.headshot:hover{
+  animation-name: gelatine;
+  animation-duration: 2.0s;
+  animation-iteration-count: 1;
+  animation-delay: 1.0;
   animation-play-state: running;
-}
-
-.fun-hover.headshot{
-  animation-play-state: paused;
-  transform: initial;
 }
 
 
@@ -82,13 +82,13 @@
   to { transform: rotate(720deg); }
 }
 
-.pulse {
+/* .pulse {
   animation: pulse 1s infinite ease-in-out alternate;
 }
 @keyframes pulse {
   from { transform: scale(0.8); }
   to { transform: scale(1.2); }
-}
+} */
 
 .flash {
   animation: flash 500ms ease infinite alternate;
