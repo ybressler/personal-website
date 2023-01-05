@@ -205,7 +205,35 @@ dt { color: #444; font-weight: 700; }
 
 th { color: #444; }
 
+/* Define image styles */
 img { max-width: 100%; }
+
+.collapsable-images {
+    max-width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+.collapsable-images .child {
+    position: relative;
+    overflow: hidden;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.collapsable-images .child img {
+    position: relative;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+}
+
+
+
+
 
 kbd { background-color: #fafbfc; border: 1px solid #c6cbd1; border-bottom-color: #959da5; border-radius: 3px; box-shadow: inset 0 -1px 0 #959da5; color: #444d56; display: inline-block; font-size: 11px; line-height: 10px; padding: 3px 5px; vertical-align: middle; }
 
