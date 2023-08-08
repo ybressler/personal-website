@@ -20,6 +20,7 @@ plugins:
   - jekyll-remote-theme
   - jekyll-relative-links
   - jekyll-github-metadata
+  - jekyll-sitemap  # This should be last
 
 cname: yaakovbressler.com
 
