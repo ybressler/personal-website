@@ -9,11 +9,11 @@
     (or are working toward) a career in the tech industry."
   url: https://www.linkedin.com/company/artistswhocode/
   logo: images/artists-who-code-logo.jpeg
-- name: Koala Time
-  about: "A fatigue management app for Apple Watch to help people
-    recovering from severe illness (or a TBI) live a normal life."
-  url: http://koalatime.app/
-  logo: images/koala-time-logo.png
+- name: Data Engineering Things<br>Medium Publication
+  about: "Contributing editor to Data Engineering Things (DET) Medium
+    publication."
+  url: https://blog.det.life/
+  logo: det-publication-logo.jpeg
 - name: Stack Overflow<br>Top 2% Contributor
   about: "Top 2% Overall contributor."
   url: https://stackoverflow.com/users/10521959/yaakov-bressler
