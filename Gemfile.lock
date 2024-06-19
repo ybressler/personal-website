@@ -1,19 +1,13 @@
+GIT
+  remote: https://github.com/forestryio/jekyll-menus.git
+  revision: 288acfacfaa14a94fbfd6738b10f9311da3a436c
+  specs:
+    jekyll-menus (0.6.1)
+      jekyll (>= 3.6, < 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
-    actionpack (6.0.5)
-      actionview (= 6.0.5)
-      activesupport (= 6.0.5)
-      rack (~> 2.0, >= 2.0.8)
-      rack-test (>= 0.6.3)
-      rails-dom-testing (~> 2.0)
-      rails-html-sanitizer (~> 1.0, >= 1.2.0)
-    actionview (6.0.5)
-      activesupport (= 6.0.5)
-      builder (~> 3.1)
-      erubi (~> 1.4)
-      rails-dom-testing (~> 2.0)
-      rails-html-sanitizer (~> 1.1, >= 1.2.0)
     activesupport (6.0.5)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -22,7 +16,6 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    builder (3.2.4)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -30,17 +23,11 @@ GEM
     colorator (1.1.0)
     commonmarker (0.23.4)
     concurrent-ruby (1.1.10)
-    crass (1.0.6)
     dnsruby (1.61.9)
       simpleidn (~> 0.1)
-    dotenv (2.7.6)
-    dotenv-rails (2.7.6)
-      dotenv (= 2.7.6)
-      railties (>= 3.2)
     em-websocket (0.5.3)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
-    erubi (1.10.0)
     ethon (0.15.0)
       ffi (>= 1.15.0)
     eventmachine (1.2.7)
@@ -167,8 +154,6 @@ GEM
     jekyll-mentions (1.6.0)
       html-pipeline (~> 2.3)
       jekyll (>= 3.7, < 5.0)
-    jekyll-menus (0.6.1)
-      jekyll (>= 3.6, < 5.0)
     jekyll-optional-front-matter (0.3.2)
       jekyll (>= 3.0, < 5.0)
     jekyll-paginate (1.1.0)
@@ -246,11 +231,7 @@ GEM
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    loofah (2.18.0)
-      crass (~> 1.0.2)
-      nokogiri (>= 1.5.9)
     mercenary (0.3.6)
-    method_source (1.0.0)
     minima (2.5.1)
       jekyll (>= 3.5, < 5.0)
       jekyll-feed (~> 0.9)
@@ -268,25 +249,10 @@ GEM
       forwardable-extended (~> 2.6)
     public_suffix (4.0.7)
     racc (1.6.0)
-    rack (2.2.3)
-    rack-test (1.1.0)
-      rack (>= 1.0, < 3)
-    rails-dom-testing (2.0.3)
-      activesupport (>= 4.2.0)
-      nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.2)
-      loofah (~> 2.3)
-    railties (6.0.5)
-      actionpack (= 6.0.5)
-      activesupport (= 6.0.5)
-      method_source
-      rake (>= 0.8.7)
-      thor (>= 0.20.3, < 2.0)
-    rake (13.0.6)
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    rdiscount (2.2.0.2)
+    rdiscount (2.2.7.3)
     rexml (3.2.5)
     rouge (3.26.0)
     ruby2_keywords (0.0.5)
@@ -304,7 +270,6 @@ GEM
       unf (~> 0.1.4)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
-    thor (1.2.1)
     thread_safe (0.3.6)
     typhoeus (1.4.0)
       ethon (>= 0.9.0)
@@ -314,22 +279,26 @@ GEM
       unf_ext
     unf_ext (0.0.8.1)
     unicode-display_width (1.8.0)
+    webrick (1.8.1)
     zeitwerk (2.5.4)
 
 PLATFORMS
+  arm64-darwin-23
   universal-darwin-21
   universal-darwin-22
 
 DEPENDENCIES
-  dotenv-rails
   github-pages
   jekyll
-  jekyll-menus
+  jekyll-github-metadata
+  jekyll-menus!
   jekyll-relative-links
   jekyll-remote-theme
-  jekyll-seo-tag
-  jekyll-sitemap
   rdiscount
+  webrick (~> 1.8)
+
+RUBY VERSION
+   ruby 3.1.2p20
 
 BUNDLED WITH
    2.3.20

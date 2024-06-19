@@ -4,13 +4,12 @@ ruby '3.1.2'
 gem 'jekyll'
 gem 'rdiscount'
 
-gem 'dotenv-rails', groups: [:development, :test]
-
 group :jekyll_plugins do
   gem "jekyll-remote-theme"
   gem "github-pages"
-  gem "jekyll-menus"
+  gem "jekyll-menus", :git => "https://github.com/forestryio/jekyll-menus.git"
   gem "jekyll-relative-links"
-  gem "jekyll-seo-tag"
-  gem "jekyll-sitemap"
+  gem "jekyll-github-metadata"
 end
+
+gem "webrick", "~> 1.8"
