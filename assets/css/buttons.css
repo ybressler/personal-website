@@ -1,0 +1,16 @@
+div.button-center-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.pill {
+    background-color: #ddd;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 16px;
+  }
