@@ -1,0 +1,66 @@
+current directory: /home/runner/work/personal-website/personal-website/vendor/bundle/ruby/3.2.0/gems/rdiscount-2.2.7.3/ext
+/usr/bin/ruby3.2 -I/usr/lib/ruby/vendor_ruby extconf.rb
+checking for random()... yes
+checking for srandom()... yes
+checking for rand()... yes
+checking for srand()... yes
+checking size of unsigned long... 8
+checking size of unsigned int... 4
+checking size of unsigned int... 4
+checking size of unsigned short... 2
+creating Makefile
+
+current directory: /home/runner/work/personal-website/personal-website/vendor/bundle/ruby/3.2.0/gems/rdiscount-2.2.7.3/ext
+make DESTDIR\= sitearchdir\=./.gem.20250716-3346-b52zmz sitelibdir\=./.gem.20250716-3346-b52zmz clean
+
+current directory: /home/runner/work/personal-website/personal-website/vendor/bundle/ruby/3.2.0/gems/rdiscount-2.2.7.3/ext
+make DESTDIR\= sitearchdir\=./.gem.20250716-3346-b52zmz sitelibdir\=./.gem.20250716-3346-b52zmz
+compiling Csio.c
+compiling amalloc.c
+compiling basename.c
+compiling css.c
+compiling docheader.c
+compiling dumptree.c
+compiling emmatch.c
+compiling flags.c
+compiling generate.c
+generate.c: In function ‘Qchar_mkd_sta_function_t’:
+generate.c:184:12: warning: passing argument 2 of ‘Qchar’ discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+  184 |   Qchar(n, iot);
+      |            ^~~
+generate.c:131:21: note: expected ‘MMIOT *’ {aka ‘struct mmiot *’} but argument is of type ‘const void *’
+  131 | Qchar(int c, MMIOT *f)
+      |              ~~~~~~~^
+compiling gethopt.c
+compiling github_flavoured.c
+compiling h1title.c
+compiling html5.c
+compiling markdown.c
+compiling mkdio.c
+compiling mktags.c
+compiling notspecial.c
+compiling pgm_options.c
+compiling rdiscount.c
+compiling resource.c
+compiling setup.c
+compiling tags.c
+compiling toc.c
+toc.c: In function ‘Csputc_mkd_sta_function_t’:
+toc.c:19:13: warning: passing argument 2 of ‘Csputc’ discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+   19 |   Csputc(n, iot);
+      |             ^~~
+In file included from toc.c:14:
+cstring.h:72:25: note: expected ‘Cstring *’ but argument is of type ‘const void *’
+   72 | extern void Csputc(int, Cstring *);
+      |                         ^~~~~~~~~
+compiling version.c
+compiling xml.c
+compiling xmlpage.c
+linking shared-object rdiscount.so
+
+current directory: /home/runner/work/personal-website/personal-website/vendor/bundle/ruby/3.2.0/gems/rdiscount-2.2.7.3/ext
+make DESTDIR\= sitearchdir\=./.gem.20250716-3346-b52zmz sitelibdir\=./.gem.20250716-3346-b52zmz install
+/usr/bin/install -c -m 0755 rdiscount.so ./.gem.20250716-3346-b52zmz
+
+current directory: /home/runner/work/personal-website/personal-website/vendor/bundle/ruby/3.2.0/gems/rdiscount-2.2.7.3/ext
+make DESTDIR\= sitearchdir\=./.gem.20250716-3346-b52zmz sitelibdir\=./.gem.20250716-3346-b52zmz clean
