@@ -15,10 +15,10 @@ document.addEventListener(
         $elem.removeClass('bounce-in');
         $elem.addClass('pulse-gentle');
         
-        // Add "click me" animation after initial animations
+        // Add "click me" animation immediately after initial animations
         setTimeout(function() {
           $elem.addClass('click-me-animation');
-        }, 1000);
+        }, 100);
       }, 2000);
     }, 500);
 

@@ -298,13 +298,13 @@
   font-weight: bold;
   font-family: 'Montserrat', sans-serif;
   opacity: 0;
-  animation: click-me-bounce 4s ease-in-out infinite;
+  animation: click-me-bounce 0.2s ease-in-out 1;
   pointer-events: none;
   z-index: 10;
 }
 
 .click-me-animation::before {
-  content: "↗";
+  content: "↙";
   position: absolute;
   top: -25px;
   right: -40px;
@@ -312,7 +312,7 @@
   font-size: 20px;
   font-weight: bold;
   opacity: 0;
-  animation: arrow-bounce 4s ease-in-out infinite;
+  animation: arrow-bounce 0.2s ease-in-out 1;
   animation-delay: 0.2s;
   pointer-events: none;
   z-index: 10;
