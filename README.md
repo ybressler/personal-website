@@ -49,7 +49,7 @@ bundle exec jekyll serve
 1. Since this site uses non-whitelisted packages and themes
 you must deploy using this CI workflow: https://github.com/jeffreytse/jekyll-deploy-action.
 
-  Deployment script located here: [`.github/worfklows/build-jekyll.yml`](.github/workflows/build-jekyll.yml)
+  Deployment script located here: [`.github/worfklows/build_and_deploy.yml`](.github/workflows/build_and_deploy.yml)
 
 
 2. When deploying, you must grant Github Actions `Read and write permissions`.
