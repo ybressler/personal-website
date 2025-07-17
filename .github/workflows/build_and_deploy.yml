@@ -29,7 +29,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3' # Matches your Gemfile
+          ruby-version: '3.3.3' # Matches your Gemfile
           bundler-cache: true # Runs 'bundle install' and caches gems automatically
       - name: Setup Pages
         id: pages
