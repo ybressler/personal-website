@@ -3,7 +3,7 @@ document.addEventListener(
     function() {
       console.log("Loaded DOM");
 
-    // Add subtle loading animation to encourage clicking
+    // Add subtle loading animation to encourage interaction
     var $elem = $("section#sparkly-header .fun-hover.headshot");
     
     // Initial subtle bounce animation on load
@@ -14,6 +14,11 @@ document.addEventListener(
       setTimeout(function() {
         $elem.removeClass('bounce-in');
         $elem.addClass('pulse-gentle');
+        
+        // Add "click me" animation after initial animations
+        setTimeout(function() {
+          $elem.addClass('click-me-animation');
+        }, 1000);
       }, 2000);
     }, 500);
 

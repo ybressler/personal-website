@@ -273,11 +273,79 @@
 }
 
 .pulse-gentle {
-  animation: pulse-gentle 3s ease-in-out infinite;
+  animation: pulse-gentle 1.5s ease-in-out infinite;
 }
 @keyframes pulse-gentle {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.02); }
+}
+
+.click-me-animation {
+  position: relative;
+  display: inline-block;
+}
+
+.click-me-animation::after {
+  content: "click me!";
+  position: absolute;
+  top: -40px;
+  right: -60px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a222c;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  opacity: 0;
+  animation: click-me-bounce 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.click-me-animation::before {
+  content: "↗";
+  position: absolute;
+  top: -25px;
+  right: -40px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  opacity: 0;
+  animation: arrow-bounce 4s ease-in-out infinite;
+  animation-delay: 0.2s;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes click-me-bounce {
+  0%, 90%, 100% { 
+    opacity: 0;
+    transform: translateY(0) scale(1);
+  }
+  5%, 85% { 
+    opacity: 1;
+    transform: translateY(-5px) scale(1.1);
+  }
+  45% { 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes arrow-bounce {
+  0%, 90%, 100% { 
+    opacity: 0;
+    transform: translateY(0) rotate(0deg);
+  }
+  5%, 85% { 
+    opacity: 1;
+    transform: translateY(-3px) rotate(10deg);
+  }
+  45% { 
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
 }
 
 .bounce-in {
