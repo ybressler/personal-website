@@ -271,6 +271,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-23
+  arm64-darwin-24
   universal-darwin-21
   universal-darwin-22
 
