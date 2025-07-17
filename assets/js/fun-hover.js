@@ -3,23 +3,17 @@ document.addEventListener(
     function() {
       console.log("Loaded DOM");
 
-    // Add subtle loading animation to encourage interaction
+    // Add click me animation to headshot
     var $elem = $("section#sparkly-header .fun-hover.headshot");
     
-    // Initial subtle bounce animation on load
+    // Add "click me" animation on load
     setTimeout(function() {
-      $elem.addClass('bounce-in');
-      
-      // Add a gentle pulse after the bounce
-      setTimeout(function() {
-        $elem.removeClass('bounce-in');
-        $elem.addClass('pulse-gentle');
-        
-        // Add "click me" animation immediately after initial animations
-        setTimeout(function() {
-          $elem.addClass('click-me-animation');
-        }, 100);
-      }, 2000);
+      $elem.addClass('click-me-animation');
     }, 500);
+
+    // Add click handler to remove animation when headshot is clicked
+    $elem.on('click', function() {
+      $elem.removeClass('click-me-animation');
+    });
 
 });
