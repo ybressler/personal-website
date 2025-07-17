@@ -231,4 +231,19 @@ This site uses a custom deployment workflow because it includes non-whitelisted 
 
 ---
 
+## 📝 Deployment Notes
+
+### GitHub Actions Configuration
+1. **Workflow Script**: Uses Official GitHub Starter Workflow for Jekyll
+   - Reference: [github.com/actions/starter-workflows](https://github.com/actions/starter-workflows/blob/main/pages/jekyll.yml)
+   - Deployment script: [`.github/workflows/build_and_deploy.yml`](.github/workflows/build_and_deploy.yml)
+
+2. **Permissions Setup**: You must grant GitHub Actions `Read and write permissions`
+   - Navigate to: `Settings` > `Actions` > `General` > `Workflow permissions`
+   - Enable read and write permissions for GitHub Actions
+
+   ![GitHub Actions Settings](images/github-actions-settings.png)
+
+---
+
 **Built with ❤️ using Jekyll and GitHub Pages**

@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
-ruby '>=3.0'
+ruby "3.3.3"
 
-gem 'jekyll'
-gem 'rdiscount'
+gem "jekyll"
 
 group :jekyll_plugins do
   gem "jekyll-remote-theme"
@@ -13,5 +12,5 @@ group :jekyll_plugins do
   gem "jekyll-sitemap"
 end
 
-gem "webrick", "~> 1.8"
+gem "webrick"
 gem "faraday-retry"
