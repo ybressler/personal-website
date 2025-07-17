@@ -276,11 +276,12 @@
   display: inline-block;
 }
 
+/* Mobile (default) - 35vw headshot (100-150px radius) */
 .click-me-animation::after {
   content: "click me!";
   position: absolute;
-  top: -40px;
-  right: -60px;
+  top: -45px;
+  right: -90px;
   background: rgba(255, 255, 255, 0.9);
   color: #1a222c;
   padding: 5px 10px;
@@ -297,8 +298,8 @@
 .click-me-animation::before {
   content: "↙";
   position: absolute;
-  top: -25px;
-  right: -40px;
+  top: -30px;
+  right: -65px;
   color: #fff;
   font-size: 20px;
   font-weight: bold;
@@ -307,6 +308,36 @@
   animation-delay: 0.3s;
   pointer-events: none;
   z-index: 10;
+}
+
+/* Tablet - 25vw headshot (100-175px radius) */
+@media only screen and (min-width: 768px) {
+  .click-me-animation::after {
+    top: -50px;
+    right: -105px;
+    font-size: 13px;
+  }
+  
+  .click-me-animation::before {
+    top: -35px;
+    right: -80px;
+    font-size: 22px;
+  }
+}
+
+/* Desktop - 20vw headshot (100-200px radius) */
+@media only screen and (min-width: 1024px) {
+  .click-me-animation::after {
+    top: -55px;
+    right: -120px;
+    font-size: 14px;
+  }
+  
+  .click-me-animation::before {
+    top: -40px;
+    right: -95px;
+    font-size: 24px;
+  }
 }
 
 @keyframes click-me-pulse {
