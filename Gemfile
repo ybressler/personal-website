@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
-ruby "3.2.3"
+
+# single source of truth for ruby version
+ruby file: ".ruby-version"
 
 gem "jekyll"
 
