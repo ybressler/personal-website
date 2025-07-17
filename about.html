@@ -1,97 +1,65 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+---
+layout: default
+title: About
+permalink: /about
+menus:
+  header:
+    identifier: about
+    weight: 10
+---
 
-<!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>About | Yaakov Bressler</title>
-<meta name="generator" content="Jekyll v3.9.2" />
-<meta property="og:title" content="About" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="My personal website" />
-<meta property="og:description" content="My personal website" />
-<link rel="canonical" href="yaakovbressler.com/about" />
-<meta property="og:url" content="yaakovbressler.com/about" />
-<meta property="og:site_name" content="Yaakov Bressler" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="About" />
-<meta name="twitter:site" content="@yaakovbressler" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"My personal website","headline":"About","url":"yaakovbressler.com/about"}</script>
-<!-- End Jekyll SEO tag -->
+<!-- Example 1: Direct markdown content -->
+## About me
+I am a data engineer who's passionate about building data platforms.
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="/assets/css/theme.css?v=">
-  <link rel="stylesheet" href="/assets/css/menu-style.css?v=">
-  <link rel="stylesheet" href="/assets/css/sparkly-header.css?v=">
-  <link rel="stylesheet" href="/assets/css/buttons.css">
-  <link rel="stylesheet" href="/assets/css/alerts.css?v=">
-  <link rel="stylesheet" href="/assets/css/image-grid.css?v=">
-  <script src="https://kit.fontawesome.com/6f5b2d94c6.js" crossorigin="anonymous"></script>
+My tech focuses are in building safe and secure data platforms
+(data infrastructure, data privacy, and cloud development).
 
-</head>
+### Open Source Contributions
+More recently, I've begun to contribute to
+<a href="https://github.com/pydantic/pydantic" target="_blank">
+  Pydantic <i class="fas fa-up-right-from-square"></i>
+</a>
 
-  <body>
+<!-- Example 2: Markdown content mixed with HTML -->
+<div class="highlight-section">
+{% capture markdown_content %}
+### Skills & Technologies
+- **Python** - Advanced proficiency in data engineering
+- **Cloud Platforms** - AWS, GCP, Azure
+- **Data Tools** - Apache Spark, Airflow, dbt
+- **Databases** - PostgreSQL, BigQuery, Redis
 
-    <section id="regular-header">
-  <div class="header">
-    <div id="site-title">
-    <a href="yaakovbressler.com/">
-      <h1>Yaakov Bressler</h1>
-    </a>
-    </div>
+*This content is written in **Markdown** but embedded within HTML!*
+{% endcapture %}
 
-  <nav>
-    
-    <ul><li class="menu-item-"1">
-      <a href="/" title="Go to Home"><i class="fas fa-link"></i>
-        <i class="fas fa-home"></i>
-        
-      </a>
-    </li>
-  <li class="menu-item-"2">
-      <a href="/about" title="Go to About"><i class="fas fa-link"></i>
-        About
-        
-      </a>
-    </li>
-  <li class="menu-item-"3">
-      <a href="/projects" title="Go to Projects"><i class="fas fa-link"></i>
-        Projects
-        
-      </a>
-    </li>
-  
-  </ul>
-
-
-  </nav>
-
+{{ markdown_content | markdownify }}
 </div>
-</section>
 
+<!-- Example 3: HTML structure with markdown content -->
+<div class="additional-content">
+<h3>Additional Information</h3>
+{% capture additional_info %}
+### Education & Background
+- Self-taught data engineer with a passion for learning
+- Focus on building scalable and secure data platforms
+- Active contributor to open source projects
 
+### Current Focus Areas
+- **Data Infrastructure**: Building robust data pipelines
+- **Cloud Development**: Leveraging cloud-native technologies  
+- **Data Privacy**: Implementing secure data handling practices
+{% endcapture %}
 
-    <div class="centered-container">
-    <section id="main">
-      <h2 id="about-me">About me</h2>
-<p>Placeholder</p>
+{{ additional_info | markdownify }}
+</div>
 
-    </section>
-    </div>
+<!-- Example 4: Using liquid variables with markdown -->
+{% assign my_status = "**Currently:** Building data platforms and contributing to open source" %}
+<div class="current-status">
+{{ my_status | markdownify }}
+</div>
 
-    <footer>
-  <p><small>Hosted on GitHub Pages</small></p>
-</footer>
-
-<script src="/assets/js/sparkleHover.js"></script>
-<script src="/assets/js/particles.min.js"></script>
-<script src="/assets/js/sweet-scroll.min.js"></script>
-<script src="/assets/js/main.js"></script>
-
-    
-  </body>
-</html>
+## Links
+Looking for resources?
+* [Hackathon Resources](/resources)

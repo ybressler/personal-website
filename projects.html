@@ -1,97 +1,90 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+---
+layout: default
+title: Projects
+permalink: /projects
+menus:
+  header:
+    identifier: Projects
+    weight: 10
+---
 
-<!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Projects | Yaakov Bressler</title>
-<meta name="generator" content="Jekyll v3.9.2" />
-<meta property="og:title" content="Projects" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="My personal website" />
-<meta property="og:description" content="My personal website" />
-<link rel="canonical" href="yaakovbressler.com/projects" />
-<meta property="og:url" content="yaakovbressler.com/projects" />
-<meta property="og:site_name" content="Yaakov Bressler" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Projects" />
-<meta name="twitter:site" content="@yaakovbressler" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"My personal website","headline":"Projects","url":"yaakovbressler.com/projects"}</script>
-<!-- End Jekyll SEO tag -->
+<!-- Example 1: Basic markdown content -->
+## Interesting Projects
+*Some of the interesting projects I've worked on.*
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="/assets/css/theme.css?v=">
-  <link rel="stylesheet" href="/assets/css/menu-style.css?v=">
-  <link rel="stylesheet" href="/assets/css/sparkly-header.css?v=">
-  <link rel="stylesheet" href="/assets/css/buttons.css">
-  <link rel="stylesheet" href="/assets/css/alerts.css?v=">
-  <link rel="stylesheet" href="/assets/css/image-grid.css?v=">
-  <script src="https://kit.fontawesome.com/6f5b2d94c6.js" crossorigin="anonymous"></script>
+<!-- Example 2: Markdown content within HTML structure -->
+<div class="project-intro">
+{% capture intro_content %}
+### My Journey in Data Engineering
 
-</head>
+I've been working on various **data engineering projects** that focus on:
+- Building scalable data pipelines
+- Implementing data privacy measures
+- Creating robust data platforms
 
-  <body>
+Each project below represents a different aspect of my journey.
+{% endcapture %}
 
-    <section id="regular-header">
-  <div class="header">
-    <div id="site-title">
-    <a href="yaakovbressler.com/">
-      <h1>Yaakov Bressler</h1>
-    </a>
-    </div>
-
-  <nav>
-    
-    <ul><li class="menu-item-"1">
-      <a href="/" title="Go to Home"><i class="fas fa-link"></i>
-        <i class="fas fa-home"></i>
-        
-      </a>
-    </li>
-  <li class="menu-item-"2">
-      <a href="/about" title="Go to About"><i class="fas fa-link"></i>
-        About
-        
-      </a>
-    </li>
-  <li class="menu-item-"3">
-      <a href="/projects" title="Go to Projects"><i class="fas fa-link"></i>
-        Projects
-        
-      </a>
-    </li>
-  
-  </ul>
-
-
-  </nav>
-
+{{ intro_content | markdownify }}
 </div>
-</section>
 
+<!-- Example 3: Complex HTML with embedded markdown -->
+<div class="responsive-cards">
+  {%- for item in site.data.projects -%}
 
+  <div class="card">
+    <div class="face face1">
+      <div class="content">
+        <h2>{{ item.name }}</h2>
+        
+        <!-- Markdown content within project cards -->
+        {% capture project_description %}
+{{ item.about }}
 
-    <div class="centered-container">
-    <section id="main">
-      <h2 id="interesting-projects">Interesting Projects</h2>
-<p>Some of the interesting projects I’ve worked on.</p>
-
-    </section>
+**Key Technologies Used:**
+- Modern data stack
+- Cloud-native solutions
+- Open source tools
+        {% endcapture %}
+        
+        {{ project_description | markdownify }}
+        
+        <a href="{{ item.url }}" target="_blank">
+          Learn More <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
     </div>
+    <div class="face face2">
+      <h2>{{ item.name }}</h2>
+      <img src="{{ item.logo }}" alt="{{ item.name }} Logo">
+    </div>
+  </div>
 
-    <footer>
-  <p><small>Hosted on GitHub Pages</small></p>
-</footer>
+  {% endfor %}
+</div>
 
-<script src="/assets/js/sparkleHover.js"></script>
-<script src="/assets/js/particles.min.js"></script>
-<script src="/assets/js/sweet-scroll.min.js"></script>
-<script src="/assets/js/main.js"></script>
+<!-- Example 4: Using liquid to process markdown from data -->
+<div class="project-details">
+<h3>Project Highlights</h3>
+{% for item in site.data.projects limit:3 %}
+  <div class="project-highlight">
+    {% assign project_summary = "**" | append: item.name | append: ":** " | append: item.about | append: " [Learn more](" | append: item.url | append: ")" %}
+    {{ project_summary | markdownify }}
+  </div>
+{% endfor %}
+</div>
 
-    
-  </body>
-</html>
+<!-- Example 5: Including markdown from variables -->
+{% assign additional_info = "
+### Want to Collaborate?
+
+I'm always interested in working on **exciting data projects**. Feel free to reach out if you'd like to:
+
+- Collaborate on open source projects
+- Discuss data engineering challenges
+- Share ideas about data platform architecture
+" %}
+
+<div class="collaboration-section">
+{{ additional_info | markdownify }}
+</div>
