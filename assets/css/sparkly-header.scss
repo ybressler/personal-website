@@ -30,14 +30,47 @@ section#sparkly-header {
 section#sparkly-header{
   .headshot {
     margin-bottom: 2.5vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .headshot a {
+    display: inline-block;
+    border: none;
+    text-decoration: none;
   }
 
   .headshot img{
-    width: 200px;
-    height: 200px;
+    width: 35vw;
+    height: 35vw;
+    max-width: 300px;
+    max-height: 300px;
+    min-width: 200px;
+    min-height: 200px;
     border-radius: 50%;
-    overflow: hidden;
+    object-fit: cover;
     background-color: blue;
+    display: block;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .headshot img {
+      width: 25vw;
+      height: 25vw;
+      max-width: 350px;
+      max-height: 350px;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .headshot img {
+      width: 20vw;
+      height: 20vw;
+      max-width: 400px;
+      max-height: 400px;
+    }
   }
 
   .particles-js-canvas-el{
