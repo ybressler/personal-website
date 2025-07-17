@@ -39,7 +39,7 @@
   animation-name: gelatine;
   animation-duration: 0.5s;
   animation-iteration-count: 1;
-  animation-delay: 1;
+  animation-delay: 0.1s;
   animation-play-state: running;
 }
 
@@ -52,8 +52,8 @@
 }
 @keyframes gelatine {
   from, to { transform: scale(1, 1); }
-  25% { transform: scale(0.9, 1.1); }
-  50% { transform: scale(1.1, 0.9); }
+  25% { transform: scale(0.95, 1.05); }
+  50% { transform: scale(1.05, 0.95); }
   75% { transform: scale(0.95, 1.05); }
 }
 

@@ -30,6 +30,8 @@ section#sparkly-header {
 section#sparkly-header{
   .headshot {
     margin-bottom: 2.5vh;
+      position: relative;
+      display: inline-block;
   }
 
   .headshot a {
