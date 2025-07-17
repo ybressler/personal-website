@@ -36,6 +36,6 @@ jobs:
           branch: 'gh-pages'         # Default is gh-pages for github provider
           jekyll_src: './'           # Default is root directory
           jekyll_cfg: '_config.yml'  # Default is _config.yml
-#          ruby_ver: '3.3.3'
+          ruby_ver: '3.3.3'
 #          bundler_ver: ''
           cname: yaakovbressler.com
