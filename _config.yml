@@ -35,11 +35,18 @@ kramdown:
 title: Yaakov Bressler
 tagline: Data Engineer
 description: My personal website
-url: yaakovbressler.com
+url: https://yaakovbressler.com
+
+# Default social media image
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /images/yaakov-bressler-headshot.jpeg
 
 twitter:
   username: yaakovbressler
-  card: summary
+  card: summary_large_image
 
 social:
   name: Yaakov Bressler
