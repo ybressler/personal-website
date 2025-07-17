@@ -1,90 +1,72 @@
 ---
 layout: default
-title: Projects
-permalink: /projects
-menus:
-  header:
-    identifier: Projects
-    weight: 10
 ---
 
-<!-- Example 1: Basic markdown content -->
-## Interesting Projects
-*Some of the interesting projects I've worked on.*
+<!--<!DOCTYPE html>-->
+<!--<html lang="en-US">-->
+<!--  <head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--</head>-->
+<!--  <body>-->
 
-<!-- Example 2: Markdown content within HTML structure -->
-<div class="project-intro">
-{% capture intro_content %}
-### My Journey in Data Engineering
+<!--    <section id="regular-header">-->
+<!--  <div class="header">-->
+<!--    <div id="site-title">-->
+<!--    <a href="yaakovbressler.com/">-->
+<!--      <h1>Yaakov Bressler</h1>-->
+<!--    </a>-->
+<!--    </div>-->
 
-I've been working on various **data engineering projects** that focus on:
-- Building scalable data pipelines
-- Implementing data privacy measures
-- Creating robust data platforms
+<!--  <nav>-->
+<!--    -->
+<!--    <ul><li class="menu-item-"1">-->
+<!--      <a href="/" title="Go to Home"><i class="fas fa-link"></i>-->
+<!--        <i class="fas fa-home"></i>-->
+<!--        -->
+<!--      </a>-->
+<!--    </li>-->
+<!--  <li class="menu-item-"2">-->
+<!--      <a href="/about" title="Go to About"><i class="fas fa-link"></i>-->
+<!--        About-->
+<!--        -->
+<!--      </a>-->
+<!--    </li>-->
+<!--  <li class="menu-item-"3">-->
+<!--      <a href="/projects" title="Go to Projects"><i class="fas fa-link"></i>-->
+<!--        Projects-->
+<!--        -->
+<!--      </a>-->
+<!--    </li>-->
+<!--  -->
+<!--  </ul>-->
 
-Each project below represents a different aspect of my journey.
-{% endcapture %}
 
-{{ intro_content | markdownify }}
-</div>
+<!--  </nav>-->
 
-<!-- Example 3: Complex HTML with embedded markdown -->
-<div class="responsive-cards">
-  {%- for item in site.data.projects -%}
+<!--</div>-->
+<!--</section>-->
 
-  <div class="card">
-    <div class="face face1">
-      <div class="content">
-        <h2>{{ item.name }}</h2>
-        
-        <!-- Markdown content within project cards -->
-        {% capture project_description %}
-{{ item.about }}
 
-**Key Technologies Used:**
-- Modern data stack
-- Cloud-native solutions
-- Open source tools
-        {% endcapture %}
-        
-        {{ project_description | markdownify }}
-        
-        <a href="{{ item.url }}" target="_blank">
-          Learn More <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
-    </div>
-    <div class="face face2">
-      <h2>{{ item.name }}</h2>
-      <img src="{{ item.logo }}" alt="{{ item.name }} Logo">
-    </div>
-  </div>
 
-  {% endfor %}
-</div>
+<!--    <div class="centered-container">-->
+<!--    <section id="main">-->
+<!--      <h2 id="interesting-projects">Interesting Projects</h2>-->
+<!--<p>Some of the interesting projects I’ve worked on.</p>-->
 
-<!-- Example 4: Using liquid to process markdown from data -->
-<div class="project-details">
-<h3>Project Highlights</h3>
-{% for item in site.data.projects limit:3 %}
-  <div class="project-highlight">
-    {% assign project_summary = "**" | append: item.name | append: ":** " | append: item.about | append: " [Learn more](" | append: item.url | append: ")" %}
-    {{ project_summary | markdownify }}
-  </div>
-{% endfor %}
-</div>
+<!--    </section>-->
+<!--    </div>-->
 
-<!-- Example 5: Including markdown from variables -->
-{% assign additional_info = "
-### Want to Collaborate?
+<!--    <footer>-->
+<!--  <p><small>Hosted on GitHub Pages</small></p>-->
+<!--</footer>-->
 
-I'm always interested in working on **exciting data projects**. Feel free to reach out if you'd like to:
+<!--<script src="/assets/js/sparkleHover.js"></script>-->
+<!--<script src="/assets/js/particles.min.js"></script>-->
+<!--<script src="/assets/js/sweet-scroll.min.js"></script>-->
+<!--<script src="/assets/js/main.js"></script>-->
 
-- Collaborate on open source projects
-- Discuss data engineering challenges
-- Share ideas about data platform architecture
-" %}
-
-<div class="collaboration-section">
-{{ additional_info | markdownify }}
-</div>
+<!--    -->
+<!--  </body>-->
+<!--</html>-->

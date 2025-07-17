@@ -15,12 +15,9 @@ My tech focuses are in building safe and secure data platforms
 (data infrastructure, data privacy, and cloud development).
 
 ### Open Source Contributions
-More recently, I've begun to contribute to
-<a href="https://github.com/pydantic/pydantic" target="_blank">
-  Pydantic <i class="fas fa-up-right-from-square"></i>
-</a>
-
-
+* {% include md_link.html markdown="[Pydantic](https://github.com/pydantic/pydantic)" %}
+* {% include md_link.html markdown="[Pandera](https://pandera.readthedocs.io/en/stable/)"  icon="fas fa-bread-slice" %}
+* 
 ## Links
 Looking for resources?
 * [Hackathon Resources](/resources)

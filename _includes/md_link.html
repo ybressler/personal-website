@@ -1,0 +1,5 @@
+{%- assign parts = include.markdown | split: '](' -%}
+{%- assign text = parts[0] | remove_first: '[' -%}
+{%- assign url = parts[1] | remove: ')' -%}
+
+<a href="{{ url }}" target="_blank" rel="noopener noreferrer">{{ text }} <i class="{{ include.icon | default: 'fas fa-up-right-from-square' }}"></i></a>
