@@ -9,16 +9,16 @@
     (or are working toward) a career in the tech industry."
   url: https://www.linkedin.com/company/artistswhocode/
   logo: images/artists-who-code-logo.jpeg
-- name: Data Engineering Things<br>Medium Publication
-  about: "Contributing editor to Data Engineering Things (DET) Medium
+- name: Data Engineer Things
+  about: "Editor in Chief of Data Engineer Things (DET), Medium
     publication."
-  url: https://blog.det.life/
+  url: https://blog.dataengineerthings.org/
   logo: images/det-publication-logo.jpeg
 - name: Pydantic<br>Open Source Contributor
   about: "Open source contributor to Pydantic."
   url: https://docs.pydantic.dev/latest/
   logo: images/pydantic-logo.png
-- name: Stack Overflow<br>Top 2% Contributor
-  about: "Top 2% Overall contributor."
+- name: Stack Overflow<br>Top 1% Contributor
+  about: "Top 1% Overall contributor."
   url: https://stackoverflow.com/users/10521959/yaakov-bressler
   logo: images/stackoverflow-icon.png
