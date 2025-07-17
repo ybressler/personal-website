@@ -4,7 +4,7 @@ document.addEventListener(
       console.log("Loaded DOM");
 
     // Add click me animation to headshot
-    var $elem = $("section#sparkly-header .fun-hover.headshot");
+    var $elem = $("section#sparkly-header .headshot");
     
     // Add "click me" animation on load
     setTimeout(function() {

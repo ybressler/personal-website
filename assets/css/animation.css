@@ -35,26 +35,17 @@
 }
 
 
-.fun-hover:hover{
+.headshot:hover{
   animation-name: gelatine;
-  animation-duration: 1.5s;
-  animation-iteration-count: infinite;
-  animation-delay: 1.5;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-delay: 1;
   animation-play-state: running;
 }
 
 .fun-hover{
   animation-play-state: paused;
 }
-
-.fun-hover.headshot:hover{
-  animation-name: gelatine;
-  animation-duration: 2.0s;
-  animation-iteration-count: 1;
-  animation-delay: 1.0;
-  animation-play-state: running;
-}
-
 
 .gelatine {
   animation: gelatine 1.5s infinite;
