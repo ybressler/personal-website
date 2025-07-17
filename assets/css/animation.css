@@ -272,6 +272,14 @@
   }
 }
 
+.pulse-gentle {
+  animation: pulse-gentle 3s ease-in-out infinite;
+}
+@keyframes pulse-gentle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
 .bounce-in {
   animation: bounce-in 2s ease infinite;
 }

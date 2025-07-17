@@ -3,17 +3,18 @@ document.addEventListener(
     function() {
       console.log("Loaded DOM");
 
-    // Do an animation on page load
+    // Add subtle loading animation to encourage clicking
     var $elem = $("section#sparkly-header .fun-hover.headshot");
-
-    $elem.animate({ deg: 720 }, {
-        duration: 1000,
-        step: function (now) {
-            var scale = (1 * now / 720);
-            $(this).css({
-                transform: 'rotate(' + now + 'deg) scale(' + scale + ')'
-            });
-        }
-    });
+    
+    // Initial subtle bounce animation on load
+    setTimeout(function() {
+      $elem.addClass('bounce-in');
+      
+      // Add a gentle pulse after the bounce
+      setTimeout(function() {
+        $elem.removeClass('bounce-in');
+        $elem.addClass('pulse-gentle');
+      }, 2000);
+    }, 500);
 
 });
