@@ -12,6 +12,69 @@ document.addEventListener(
     var clickMeBubble = null;
     var clickMeArrow = null;
     
+    /**
+     * Creates a modern SVG arrow pointing towards the headshot
+     * @param {number} startX - Starting X position of the arrow
+     * @param {number} startY - Starting Y position of the arrow
+     * @param {number} endX - Ending X position (pointing towards headshot)
+     * @param {number} endY - Ending Y position (pointing towards headshot)
+     * @param {number} size - Size of the arrow
+     * @returns {SVGElement} - The created SVG arrow element
+     */
+    function createArrowSVG(startX, startY, endX, endY, size) {
+      // Create SVG element
+      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('width', size * 2);
+      svg.setAttribute('height', size * 2);
+      svg.setAttribute('viewBox', `0 0 ${size * 2} ${size * 2}`);
+      svg.style.position = 'absolute';
+      svg.style.pointerEvents = 'none';
+      svg.style.zIndex = '10';
+      
+      // Calculate arrow direction
+      var deltaX = endX - startX;
+      var deltaY = endY - startY;
+      var length = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+      var unitX = deltaX / length;
+      var unitY = deltaY / length;
+      
+      // Arrow line (shaft)
+      var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', size);
+      line.setAttribute('y1', size);
+      line.setAttribute('x2', size + unitX * size * 0.8);
+      line.setAttribute('y2', size + unitY * size * 0.8);
+      line.setAttribute('stroke', '#fff');
+      line.setAttribute('stroke-width', '2');
+      line.setAttribute('stroke-linecap', 'round');
+      
+      // Arrow head (triangle)
+      var arrowHead = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+      var headSize = size * 0.3;
+      var headX = size + unitX * size * 0.8;
+      var headY = size + unitY * size * 0.8;
+      
+      // Calculate perpendicular for arrow head
+      var perpX = -unitY * headSize;
+      var perpY = unitX * headSize;
+      
+      var points = [
+        [headX, headY],
+        [headX - unitX * headSize + perpX, headY - unitY * headSize + perpY],
+        [headX - unitX * headSize - perpX, headY - unitY * headSize - perpY]
+      ].map(p => p.join(',')).join(' ');
+      
+      arrowHead.setAttribute('points', points);
+      arrowHead.setAttribute('fill', '#fff');
+      arrowHead.setAttribute('stroke', '#fff');
+      arrowHead.setAttribute('stroke-width', '1');
+      
+      svg.appendChild(line);
+      svg.appendChild(arrowHead);
+      
+      return svg;
+    }
+    
     function createClickMeAnimation() {
       // Remove existing elements if they exist
       removeClickMeAnimation();
@@ -21,21 +84,15 @@ document.addEventListener(
       clickMeBubble.className = 'click-me-bubble';
       clickMeBubble.textContent = 'click me!';
       
-      // Create the arrow
-      clickMeArrow = document.createElement('div');
-      clickMeArrow.className = 'click-me-arrow';
-      clickMeArrow.textContent = '↙';
-      
-      // Add elements to the container
+      // Add bubble to the container
       headshotContainer.appendChild(clickMeBubble);
-      headshotContainer.appendChild(clickMeArrow);
       
       // Position elements elegantly based on actual headshot dimensions
       positionClickMeElements();
     }
     
     function positionClickMeElements() {
-      if (!clickMeBubble || !clickMeArrow) return;
+      if (!clickMeBubble) return;
       
       // Get the computed dimensions of the headshot
       var imgRect = headshotImg.getBoundingClientRect();
@@ -49,13 +106,9 @@ document.addEventListener(
       var bubbleX = radius + bubbleOffset;
       var bubbleY = -(radius + bubbleOffset);
       
-      // Position the arrow between the bubble and the image
-      var arrowX = radius + (bubbleOffset / 2);
-      var arrowY = -(radius + (bubbleOffset / 2));
-      
       // Apply responsive sizing
       var fontSize = Math.max(12, Math.min(16, radius / 10));
-      var arrowSize = Math.max(18, Math.min(24, radius / 8));
+      var arrowSize = Math.max(20, Math.min(30, radius / 8));
       
       clickMeBubble.style.cssText = `
         top: ${bubbleY}px;
@@ -63,11 +116,23 @@ document.addEventListener(
         font-size: ${fontSize}px;
       `;
       
-      clickMeArrow.style.cssText = `
-        top: ${arrowY}px;
-        left: ${arrowX}px;
-        font-size: ${arrowSize}px;
-      `;
+      // Remove existing arrow if it exists
+      if (clickMeArrow) {
+        clickMeArrow.remove();
+      }
+      
+      // Create and position the SVG arrow
+      var arrowStartX = bubbleX + (bubbleOffset / 2);
+      var arrowStartY = bubbleY + (bubbleOffset / 2);
+      var arrowEndX = radius * 0.7; // Point towards the image edge
+      var arrowEndY = -radius * 0.7;
+      
+      clickMeArrow = createArrowSVG(arrowStartX, arrowStartY, arrowEndX, arrowEndY, arrowSize);
+      clickMeArrow.className = 'click-me-arrow';
+      clickMeArrow.style.left = (arrowStartX - arrowSize) + 'px';
+      clickMeArrow.style.top = (arrowStartY - arrowSize) + 'px';
+      
+      headshotContainer.appendChild(clickMeArrow);
     }
     
     function removeClickMeAnimation() {
@@ -93,7 +158,7 @@ document.addEventListener(
     
     // Reposition elements on window resize
     window.addEventListener('resize', function() {
-      if (clickMeBubble && clickMeArrow) {
+      if (clickMeBubble) {
         positionClickMeElements();
       }
     });
