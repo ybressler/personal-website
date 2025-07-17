@@ -11,6 +11,8 @@ Stub for later work
 Using this theme: https://github.com/murraco/jekyll-theme-minimal-resume.
 But am thinking about packaging into my own.
 
+You can create pages using [markdown or HTML](MARKDOWN_HTML_GUIDE.md)
+
 ## Components:
 To create callouts, use the following syntax:
 ```html
