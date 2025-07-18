@@ -4,6 +4,11 @@
       Broadway shows since 1738."
   url: https://openbroadwaydata.com/
   logo: images/open-broadway-data-logo.png
+- name: Glonky Animals
+  about: "A simple, silly mobile game for toddlers featuring adorable animals 
+    with fun sounds and animations. Perfect for ages 2+, sparking smiles and silliness!"
+  url: https://apps.apple.com/us/app/glonky-animals/id6580753805
+  logo: images/glonky-animals-icon.png
 - name: Artists Who Code
   about: "A community and mentorship organization for artists who have
     (or are working toward) a career in the tech industry."
