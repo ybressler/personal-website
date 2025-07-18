@@ -19,5 +19,3 @@ My tech focuses are in building safe and secure data platforms
 * {% include md_link.html markdown="[Pandera](https://pandera.readthedocs.io/en/stable/)"  icon="fas fa-bread-slice" %}
 * 
 ## Links
-Looking for resources?
-* [Hackathon Resources](/resources)
