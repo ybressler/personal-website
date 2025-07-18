@@ -73,6 +73,10 @@
   to { transform: rotate(720deg); }
 }
 
+#headshot-img.spin-once {
+  animation: elastic-spin 0.7s ease-in-out;
+}
+
 /* .pulse {
   animation: pulse 1s infinite ease-in-out alternate;
 }

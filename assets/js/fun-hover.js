@@ -57,3 +57,43 @@ document.addEventListener(
     });
 
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("Loaded DOM");
+
+  // Get the headshot image by its ID
+  const headshotImg = document.getElementById('headshot-img');
+
+  // Exit if the headshot image isn't found
+    if (headshotImg) {
+      // Add the click listener to the headshot
+      headshotImg.addEventListener('click', () => {
+
+    // 1. Add the class to make it spin
+    headshotImg.classList.add('spin-once');
+
+    // 2. NEW: Listen for the animation to finish
+    headshotImg.addEventListener('animationend', () => {
+      // 3. NEW: Remove the class once it's done
+      headshotImg.classList.remove('spin-once');
+    }, { once: true }); // This listener also only runs once
+
+    // 4. Fire the confetti (existing code)
+    const rect = headshotImg.getBoundingClientRect();
+    const x = (rect.left + rect.right) / 2;
+    const y = (rect.top + rect.bottom) / 2;
+
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: {
+        x: x / window.innerWidth,
+        y: y / window.innerHeight
+      }
+    });
+
+  }, { once: true });
+}
+
+});
