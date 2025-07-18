@@ -12,8 +12,9 @@
 /* The container for the text box and arrow */
 .click-me-prompt {
     position: absolute;
-    top: 20px;
-    left: calc(100% + 30px); 
+    top: 50%;
+    left: calc(100% + 20px); 
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
     pointer-events: none; 
@@ -35,8 +36,8 @@
 .arrow-svg {
     width: 100px;
     height: 80px;
-    margin-left: -25px;
-    transform: scaleX(-1) rotate(25deg);
+    margin-left: -30px;
+    transform: scaleX(-1) rotate(20deg);
 }
 
 .arrow-path {
@@ -76,12 +77,13 @@
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .click-me-prompt {
-        top: -40px;
-        left: calc(50% + 30px);
+        top: -60px;
+        left: 50%;
+        transform: translateX(-50%);
     }
     
     .arrow-svg {
-        transform: scaleX(-1) rotate(45deg);
+        transform: scaleX(-1) rotate(90deg);
     }
     
     .prompt-text {
@@ -92,12 +94,14 @@
 
 @media (max-width: 480px) {
     .click-me-prompt {
-        top: -50px;
-        left: calc(50% + 10px);
+        top: -70px;
+        left: 50%;
+        transform: translateX(-50%);
     }
     
     .arrow-svg {
         width: 80px;
         height: 60px;
+        transform: scaleX(-1) rotate(90deg);
     }
 }
