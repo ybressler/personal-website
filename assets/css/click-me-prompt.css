@@ -1,0 +1,115 @@
+/* Click Me Prompt Styles */
+
+/* The main container for positioning */
+.profile-container {
+    position: relative; /* This is crucial for positioning the prompt */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Updated headshot image styles */
+#headshot-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#headshot-img:hover {
+    transform: scale(1.05);
+}
+
+/* The container for the text box and arrow */
+.click-me-prompt {
+    position: absolute;
+    top: 20px;
+    left: calc(100% + 30px); 
+    display: flex;
+    align-items: center;
+    pointer-events: none; 
+}
+
+/* The "Click Me" text box */
+.prompt-text {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+    white-space: nowrap;
+}
+
+/* The SVG for our cool, dynamic arrow */
+.arrow-svg {
+    width: 100px;
+    height: 80px;
+    margin-left: -25px;
+    transform: scaleX(-1) rotate(25deg);
+}
+
+.arrow-path {
+    stroke: #007bff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    fill: none;
+    stroke-dasharray: 130;
+    stroke-dashoffset: 130;
+    animation: draw-arrow 1.5s ease-out 0.5s forwards;
+}
+
+/* Keyframe animation for drawing the arrow */
+@keyframes draw-arrow {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* This class will be added by JavaScript on click */
+.puff-out {
+    animation: puff-animation 0.5s ease-out forwards;
+}
+
+/* Keyframe animation for the "puff" effect */
+@keyframes puff-animation {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .click-me-prompt {
+        top: -40px;
+        left: calc(50% + 30px);
+    }
+    
+    .arrow-svg {
+        transform: scaleX(-1) rotate(45deg);
+    }
+    
+    .prompt-text {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .click-me-prompt {
+        top: -50px;
+        left: calc(50% + 10px);
+    }
+    
+    .arrow-svg {
+        width: 80px;
+        height: 60px;
+    }
+}
