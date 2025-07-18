@@ -17,5 +17,5 @@ My tech focuses are in building safe and secure data platforms
 ### Open Source Contributions
 * {% include md_link.html markdown="[Pydantic](https://github.com/pydantic/pydantic)" %}
 * {% include md_link.html markdown="[Pandera](https://pandera.readthedocs.io/en/stable/)"  icon="fas fa-bread-slice" %}
-* 
-## Links
+
+
