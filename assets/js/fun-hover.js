@@ -66,34 +66,38 @@ document.addEventListener("DOMContentLoaded", function() {
   const headshotImg = document.getElementById('headshot-img');
 
   // Exit if the headshot image isn't found
-    if (headshotImg) {
-      // Add the click listener to the headshot
-      headshotImg.addEventListener('click', () => {
+if (headshotImg) {
+  let clickCount = 0;
 
-    // 1. Add the class to make it spin
-    headshotImg.classList.add('spin-once');
+  headshotImg.addEventListener('click', () => {
+    clickCount++;
 
-    // 2. NEW: Listen for the animation to finish
-    headshotImg.addEventListener('animationend', () => {
-      // 3. NEW: Remove the class once it's done
-      headshotImg.classList.remove('spin-once');
-    }, { once: true }); // This listener also only runs once
+    // --- Condition 1: Handle the SPIN animation ---
+    // Fires on the 1st, 10th, 20th, etc. click
+    if (clickCount === 1 || clickCount % 10 === 0) {
+      headshotImg.classList.add('spin-once');
 
-    // 4. Fire the confetti (existing code)
-    const rect = headshotImg.getBoundingClientRect();
-    const x = (rect.left + rect.right) / 2;
-    const y = (rect.top + rect.bottom) / 2;
+      headshotImg.addEventListener('animationend', () => {
+        headshotImg.classList.remove('spin-once');
+      }, { once: true });
+    }
 
-    confetti({
-      particleCount: 150,
-      spread: 70,
-      origin: {
-        x: x / window.innerWidth,
-        y: y / window.innerHeight
-      }
-    });
+    // --- Condition 2: Handle the CONFETTI effect ---
+    // Fires on the 1st, 25th, 50th, etc. click
+    if (clickCount === 1 || clickCount % 25 === 0) {
+      const rect = headshotImg.getBoundingClientRect();
+      const x = (rect.left + rect.right) / 2;
+      const y = (rect.top + rect.bottom) / 2;
 
-  }, { once: true });
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: {
+          x: x / window.innerWidth,
+          y: y / window.innerHeight
+        }
+      });
+    }
+  });
 }
-
 });
