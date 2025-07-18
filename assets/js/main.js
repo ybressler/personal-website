@@ -118,7 +118,7 @@ document.addEventListener(
     !1
 );
 
-$('section#sparkly-header .headshot').sparkleHover({
+$('#headshot-img').sparkleHover({
       colors : ['#5B6989', "#B1ACA3",'#D17C68', '#1F2A36'],
       num_sprites: 20,
       lifespan: 1000,
@@ -157,3 +157,26 @@ $('section#sparkly-header').sparkleHover({
       shape: 'circle',
       action: 'click',
     });
+
+// Click Me Prompt functionality
+document.addEventListener('DOMContentLoaded', () => {
+    // Get the elements from the page
+    const headshot = document.getElementById('headshot-img');
+    const prompt = document.querySelector('.click-me-prompt');
+
+    // Only add the click listener if both elements exist
+    if (headshot && prompt) {
+        // Add a click event listener to the headshot image
+        headshot.addEventListener('click', () => {
+            // Add the 'puff-out' class to the prompt to trigger the animation
+            prompt.classList.add('puff-out');
+            
+            // Optional: Remove the prompt from DOM after animation completes
+            setTimeout(() => {
+                if (prompt.parentNode) {
+                    prompt.style.display = 'none';
+                }
+            }, 500); // 500ms matches the animation duration
+        });
+    }
+});

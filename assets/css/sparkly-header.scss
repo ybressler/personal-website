@@ -45,8 +45,8 @@ section#sparkly-header{
   .headshot img{
     width: 35vw;
     height: 35vw;
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 500px;
+    max-height: 500px;
     min-width: 200px;
     min-height: 200px;
     border-radius: 50%;
@@ -55,33 +55,25 @@ section#sparkly-header{
     display: block;
   }
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (max-width: 768px) {
     .headshot img {
-      width: 25vw;
-      height: 25vw;
-      max-width: 350px;
-      max-height: 350px;
-    }
-  }
-
-  @media only screen and (min-width: 1024px) {
-    .headshot img {
-      width: 20vw;
-      height: 20vw;
+      width: 50vw;
+      height: 50vw;
       max-width: 400px;
       max-height: 400px;
     }
   }
 
-  .particles-js-canvas-el{
-    height:100vh!important
-    }
-  .header{
-    font-family:'Montserrat',
+  .particles-js-canvas-el {
+    height: 100vh !important
+  }
+
+  .header {
+    font-family: 'Montserrat',
     sans-serif;
-    z-index:1;
-    text-align:center;
-    color:#fff;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
     position:absolute;
     top:50%;
     left:50%;

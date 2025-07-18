@@ -35,7 +35,7 @@
 }
 
 
-.headshot:hover{
+.headshot img:hover{
   animation-name: gelatine;
   animation-duration: 0.5s;
   animation-iteration-count: 1;
@@ -272,29 +272,6 @@
 }
 
 /* JavaScript-based click-me animation styles */
-.click-me-bubble {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.9);
-  color: #1a222c;
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
-  pointer-events: none;
-  z-index: 10;
-  animation: click-me-pulse 2s ease-in-out infinite;
-}
-
-@keyframes click-me-pulse {
-  0%, 100% { 
-    opacity: 0.8;
-    transform: translateY(0) scale(1);
-  }
-  50% { 
-    opacity: 1;
-    transform: translateY(-3px) scale(1.05);
-  }
-}
 
 .bounce-in {
   animation: bounce-in 2s ease infinite;
