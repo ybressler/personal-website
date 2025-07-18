@@ -8,18 +8,6 @@
     justify-content: center;
 }
 
-/* Updated headshot image styles */
-#headshot-img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#headshot-img:hover {
-    transform: scale(1.05);
-}
 
 /* The container for the text box and arrow */
 .click-me-prompt {
@@ -58,7 +46,7 @@
     fill: none;
     stroke-dasharray: 130;
     stroke-dashoffset: 130;
-    animation: draw-arrow 1.5s ease-out 0.5s forwards;
+    animation: draw-arrow 0.5s ease-out 0.5s forwards;
 }
 
 /* Keyframe animation for drawing the arrow */

@@ -12,12 +12,8 @@ document.addEventListener(
     var clickMeBubble = null;
     
     function createClickMeAnimation() {
-      // Remove existing elements if they exist
-      removeClickMeAnimation();
-      
       // Create the speech bubble
       clickMeBubble = document.createElement('div');
-      clickMeBubble.className = 'click-me-bubble';
       clickMeBubble.textContent = 'click me!';
       
       // Add bubble to the container
@@ -52,23 +48,7 @@ document.addEventListener(
       `;
     }
     
-    function removeClickMeAnimation() {
-      if (clickMeBubble) {
-        clickMeBubble.remove();
-        clickMeBubble = null;
-      }
-    }
-    
-    // Show the animation after a short delay
-    setTimeout(function() {
-      createClickMeAnimation();
-    }, 500);
-    
-    // Remove animation when headshot is clicked
-    headshotContainer.addEventListener('click', function() {
-      removeClickMeAnimation();
-    });
-    
+
     // Reposition elements on window resize
     window.addEventListener('resize', function() {
       if (clickMeBubble) {
