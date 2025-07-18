@@ -30,14 +30,15 @@
     font-weight: bold;
     box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
     white-space: nowrap;
+    transform: translateY(-15px);
 }
 
 /* The SVG for our cool, dynamic arrow */
 .arrow-svg {
     width: 100px;
     height: 80px;
-    margin-left: -30px;
-    transform: scaleX(-1) rotate(20deg);
+    margin-left: -10px;
+    transform: scaleX(-1) rotate(10deg);
 }
 
 .arrow-path {
@@ -70,38 +71,38 @@
     }
     100% {
         opacity: 0;
-        transform: scale(1.5);
+        transform: translateY(-50%) scale(1.5);
     }
 }
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .click-me-prompt {
-        top: -60px;
+        top: -185px;
         left: 50%;
         transform: translateX(-50%);
+        flex-direction: column; /* Stack the text and arrow vertically */
+        gap: 5px; /* Add a small space between text and arrow */
     }
-    
+
     .arrow-svg {
-        transform: scaleX(-1) rotate(90deg);
+        transform: rotate(81deg) translateX(76px) translateY(12px);
+        margin-left: 0; /* Remove side margin for better centering */
     }
-    
+
     .prompt-text {
         font-size: 14px;
         padding: 6px 12px;
+        transform: translateY(-50px); /* Reset the desktop vertical alignment */
     }
-}
-
-@media (max-width: 480px) {
-    .click-me-prompt {
-        top: -70px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .arrow-svg {
-        width: 80px;
-        height: 60px;
-        transform: scaleX(-1) rotate(90deg);
+        @keyframes puff-animation {
+        0% {
+            opacity: 1;
+            transform: translateX(-50%) scale(1); /* Include original transform */
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(-50%) scale(1.5); /* Include original transform */
+        }
     }
 }
