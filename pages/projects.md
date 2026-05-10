@@ -26,7 +26,11 @@ menus:
     </div>
     <div class="face face2">
       <h2>{{ item.name }}</h2>
-      <img src="{{ item.logo }}" alt="{{ item.name }} Logo">
+      {%- assign logo_webp = item.logo | replace: '.png', '.webp' | replace: '.jpeg', '.webp' | replace: '.jpg', '.webp' -%}
+      <picture>
+        <source srcset="{{ logo_webp }}" type="image/webp">
+        <img src="{{ item.logo }}" alt="{{ item.name }} Logo" loading="lazy" decoding="async">
+      </picture>
     </div>
   </div>
 
