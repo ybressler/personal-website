@@ -40,27 +40,17 @@ a {
 }
 
 section#main{
+  display:inline-block;
+}
+
+body.home section#main {
   display: block;
   width: 100%;
-  max-width: 1100px;
+  max-width: 760px;
   box-sizing: border-box;
 }
 
-section#main > h1,
-section#main > h2,
-section#main > h3,
-section#main > h4,
-section#main > p,
-section#main > ul,
-section#main > ol,
-section#main > blockquote,
-section#main > pre {
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-section#main img {
+body.home section#main img {
   max-width: 100%;
   height: auto;
 }
@@ -321,72 +311,16 @@ section#sparkly-header{
 /* Design Regular header */
 section#regular-header {
   display: flex;
-  align-items: center;
-  vertical-align: bottom;
-  min-height: 10vh;
-  border-bottom: 1px solid rgba(26, 34, 44, 0.08);
-  background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(248,250,253,0.4));
-  backdrop-filter: saturate(160%) blur(6px);
-  -webkit-backdrop-filter: saturate(160%) blur(6px);
-  position: sticky;
-  top: 0;
-  z-index: 50;
+  vertical-align:bottom;
+  min-height:10vh;
+  border-bottom: 1px dotted black;
 
   .header{
-    font-family: 'Montserrat', sans-serif;
+    font-family:'Montserrat',
+    sans-serif;
     z-index:1;
-    padding: 18px 32px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
+    padding: 25px 25px 0px;
   }
-
-  #site-title h1 {
-    margin: 0;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-
-  #site-title a {
-    color: var(--heading-color);
-    text-decoration: none;
-    -webkit-text-stroke: 0 !important;
-    transition: opacity 0.2s ease;
-  }
-  #site-title a:hover { opacity: 0.7; }
-
-  nav ul {
-    display: flex;
-    gap: 6px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    flex-wrap: wrap;
-  }
-  nav > ul > li:not(:first-child) { padding-top: 0 !important; }
-  nav li { padding: 0; }
-  nav a {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border-radius: 999px;
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-  nav a:hover {
-    background: rgba(40, 91, 177, 0.08);
-    color: var(--main-color-1);
-    -webkit-text-stroke: 0;
-  }
-  nav a i { font-size: 13px; opacity: 0.7; }
 }
 
 
