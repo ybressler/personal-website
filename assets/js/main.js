@@ -2,6 +2,7 @@ document.addEventListener(
     "DOMContentLoaded",
     function() {
         new SweetScroll({});
+        if (!document.getElementById("sparkly-header")) return;
         particlesJS(
             "sparkly-header",
             {

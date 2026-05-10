@@ -15,9 +15,16 @@
     width: 300px;
     height: 400px;
     margin: 0 auto;
-    background: #000;
-    border-radius: 15px;
-    box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5);
+    background: #1a222c;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(26, 34, 44, 0.18), 0 2px 6px rgba(26, 34, 44, 0.08);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.responsive-cards .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(26, 34, 44, 0.28), 0 4px 12px rgba(26, 34, 44, 0.12);
 }
 
 .responsive-cards .face {
@@ -61,9 +68,44 @@
 
 /* Give the thingies nice background colors */
 .card .face.face2{
-  border-radius: 15px;
+  border-radius: 18px;
   flex-direction: column;
 
+}
+
+.card .face.face1 {
+  border-radius: 18px;
+}
+.card .face.face1 .content {
+  color: #fff;
+  text-align: center;
+  padding: 0 8px;
+}
+.card .face.face1 .content h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+.card .face.face1 .content p {
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 18px;
+}
+.card .face.face1 .content a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.45);
+  border-radius: 999px;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.card .face.face1 .content a:hover {
+  background: rgba(255,255,255,0.95);
+  color: #1a222c;
+  border-color: #fff;
+  transform: translateY(-1px);
+  -webkit-text-stroke: 0;
 }
 
 .card:nth-child(4n+1) .face.face2 {
