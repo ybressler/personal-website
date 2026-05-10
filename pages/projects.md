@@ -26,7 +26,7 @@ menus:
     </div>
     <div class="face face2">
       <h2>{{ item.name }}</h2>
-      <img src="{{ item.logo }}" alt="{{ item.name }} Logo">
+      <img src="{{ item.logo }}" alt="{{ item.name }} Logo" loading="lazy" decoding="async">
     </div>
   </div>
 
