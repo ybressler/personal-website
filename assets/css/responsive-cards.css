@@ -66,6 +66,25 @@
 
 }
 
+/* Keep card text legible against the dark card background and prevent
+   global typography (Montserrat heading, dark body color) from leaking in. */
+.responsive-cards .face,
+.responsive-cards .face h2,
+.responsive-cards .face p,
+.responsive-cards .face a {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.responsive-cards .face1 .content {
+  color: rgba(255, 255, 255, 0.85);
+}
+.responsive-cards .face1 .content p {
+  color: rgba(255, 255, 255, 0.78);
+}
+.responsive-cards .card:hover .face.face2 h2 {
+  font-size: 1.3em;
+  white-space: nowrap;
+}
+
 .card:nth-child(4n+1) .face.face2 {
   background-image: linear-gradient(
     40deg,

@@ -5,9 +5,9 @@ document.addEventListener(
 
     // Create elegant click-me animation for headshot
     var headshotContainer = document.querySelector("section#sparkly-header .headshot");
+    if (!headshotContainer) return;
     var headshotImg = headshotContainer.querySelector("img");
-    
-    if (!headshotContainer || !headshotImg) return;
+    if (!headshotImg) return;
     
     var clickMeBubble = null;
     
