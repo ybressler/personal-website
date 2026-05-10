@@ -310,7 +310,12 @@ section#sparkly-header{
 
 section#sparkly-header {
   .header-links {
-    margin-top: 18px;
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    z-index: 2;
     display: flex;
     justify-content: center;
   }
@@ -332,6 +337,7 @@ section#sparkly-header {
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-tap-highlight-color: transparent;
   }
   .hero-cta i {
     font-size: 14px;
@@ -345,6 +351,16 @@ section#sparkly-header {
     transform: translateY(-2px);
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3), 0 0 30px rgba(40, 91, 177, 0.4);
     -webkit-text-stroke: 0;
+  }
+
+  @media (max-width: 768px) {
+    .header-links {
+      bottom: 72px;
+    }
+    .hero-cta {
+      font-size: 13px;
+      padding: 8px 16px;
+    }
   }
 }
 
