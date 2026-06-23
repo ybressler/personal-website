@@ -9,11 +9,25 @@
   const achList = document.getElementById('game-achievements');
   const resetBtn = document.getElementById('game-reset');
   const gameRoot = document.querySelector('.headshot-game');
+  const powerEl = document.getElementById('game-power');
+  const powerFillEl = document.getElementById('game-power-fill');
+  const logToggle = document.getElementById('game-log-toggle');
+  const logPanel = document.getElementById('game-log');
+  const logList = document.getElementById('game-log-list');
 
   const state = loadState();
   const thresholds = Array.from(achList.querySelectorAll('li'))
     .map(li => parseInt(li.dataset.threshold, 10))
     .sort((a, b) => a - b);
+  const COMBO_WINDOW = 1500;
+  const COMBO_MAX_STREAK = 10;
+  const DAILY_CURSES = [
+    { id: 'tomato-surplus', name: 'Tomato Surplus', trigger: 'swipe-left' },
+    { id: 'forbidden-sky', name: 'Forbidden Sky', trigger: 'swipe-up' },
+    { id: 'warm-fingers', name: 'Warm Fingers', trigger: 'combo-4' },
+    { id: 'mirror-face', name: 'Mirror Face', trigger: 'swipe-right' }
+  ];
+  const dailyCurse = setupDailyCurse();
 
   render();
 
@@ -27,11 +41,13 @@
   target.addEventListener('pointerdown', onPointerDown);
   target.addEventListener('click', onClick);
   resetBtn.addEventListener('click', onReset);
+  if (logToggle && logPanel) logToggle.addEventListener('click', onLogToggle);
   clicksEl.addEventListener('click', onSecretClick);
   window.addEventListener('blur', endDrag);
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) endDrag();
   });
+  setInterval(updatePowerBar, 120);
 
   function loadState() {
     try {
@@ -44,15 +60,29 @@
     }
   }
   function defaults() {
-    return { clicks: 0, lifetime: 0, unlocked: [], unlockedSecrets: [], rageCount: 0, secretClicks: 0 };
+    return {
+      clicks: 0,
+      lifetime: 0,
+      unlocked: [],
+      unlockedSecrets: [],
+      rageCount: 0,
+      secretClicks: 0,
+      combo: { streak: 0, best: 0, lastAt: 0, lastAction: null },
+      dailyCurse: null,
+      logs: []
+    };
   }
   function persist() {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
   }
 
   function render() {
+    state.combo = Object.assign({ streak: 0, best: 0, lastAt: 0, lastAction: null }, state.combo || {});
+    state.logs = Array.isArray(state.logs) ? state.logs : [];
     updateClicksDisplay();
     updateLifetimeDisplay();
+    updatePowerBar();
+    renderLogs();
     if (state.clicks !== 0) target.classList.add('has-clicked');
     achList.querySelectorAll('li[data-threshold]').forEach(li => {
       const t = parseInt(li.dataset.threshold, 10);
@@ -65,19 +95,58 @@
     checkAchievements();
   }
 
+  function todayKey() {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+
+  function hashString(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = ((hash << 5) - hash) + str.charCodeAt(i);
+      hash |= 0;
+    }
+    return Math.abs(hash);
+  }
+
+  function setupDailyCurse() {
+    const date = todayKey();
+    const curse = DAILY_CURSES[hashString(date) % DAILY_CURSES.length];
+    if (!state.dailyCurse || state.dailyCurse.date !== date || state.dailyCurse.id !== curse.id) {
+      state.dailyCurse = { date: date, id: curse.id, found: false };
+      persist();
+    }
+    if (state.dailyCurse.found && gameRoot) gameRoot.classList.add('daily-curse-found');
+    return curse;
+  }
+
   function updateClicksDisplay() {
     clicksEl.textContent = state.clicks.toLocaleString();
     clicksEl.classList.toggle('negative', state.clicks < 0);
     if (gameRoot) gameRoot.classList.toggle('is-negative', state.clicks < 0);
-    toggleHellMode(state.clicks <= -100);
+    updateHellMode();
+  }
+
+  function updateHellMode() {
+    const depth = state.clicks <= -100 ? Math.min(10, Math.floor(Math.abs(state.clicks) / 100)) : 0;
+    document.body.style.setProperty('--hell-depth', (depth / 10).toFixed(2));
+    document.body.style.setProperty('--hell-step', String(depth));
+    document.body.classList.toggle('abyss-mode', depth >= 10);
+    toggleHellMode(depth > 0);
   }
 
   function toggleHellMode(on) {
     const isOn = document.body.classList.contains('hell-mode');
     if (on === isOn) return;
     document.body.classList.toggle('hell-mode', on);
-    if (on) spawnHellDemons();
-    else removeHellDemons();
+    if (on) {
+      spawnHellDemons();
+    } else {
+      document.body.style.removeProperty('--hell-depth');
+      document.body.style.removeProperty('--hell-step');
+      document.body.classList.remove('abyss-mode');
+      removeHellDemons();
+    }
   }
 
   function spawnHellDemons() {
@@ -188,6 +257,169 @@
     document.removeEventListener('pointercancel', onPointerUp);
   }
 
+  function onLogToggle() {
+    const open = logPanel.hasAttribute('hidden');
+    if (open) {
+      logPanel.removeAttribute('hidden');
+      logToggle.setAttribute('aria-expanded', 'true');
+      logToggle.classList.add('is-open');
+      if (!state.logs.length) addLog('The record was empty until you looked.', true);
+    } else {
+      logPanel.setAttribute('hidden', '');
+      logToggle.setAttribute('aria-expanded', 'false');
+      logToggle.classList.remove('is-open');
+    }
+  }
+
+  function addLog(message, force) {
+    if (!force && Math.random() > 0.22) return;
+    state.logs = Array.isArray(state.logs) ? state.logs : [];
+    if (state.logs[0] === message) return;
+    state.logs.unshift(message);
+    state.logs = state.logs.slice(0, 8);
+    renderLogs();
+    persist();
+  }
+
+  function renderLogs() {
+    if (!logList) return;
+    logList.innerHTML = '';
+    (state.logs || []).forEach(function (message) {
+      const li = document.createElement('li');
+      li.textContent = message;
+      logList.appendChild(li);
+    });
+  }
+
+  function dailyFound() {
+    return state.dailyCurse && state.dailyCurse.date === todayKey() && state.dailyCurse.id === dailyCurse.id && state.dailyCurse.found;
+  }
+
+  function maybeFindDailyCurse(action) {
+    if (dailyFound()) return;
+    const combo = state.combo || {};
+    const found = dailyCurse.trigger === action || (dailyCurse.trigger === 'combo-4' && (combo.streak || 0) >= 4);
+    if (!found) return;
+    state.dailyCurse.found = true;
+    if (gameRoot) gameRoot.classList.add('daily-curse-found');
+    unlockSecret('daily');
+    addLog('You found the daily curse: ' + dailyCurse.name + '.', true);
+    triggerDailyCurseReveal();
+  }
+
+  function triggerDailyCurseReveal() {
+    document.body.classList.add('daily-curse-reveal');
+    setTimeout(function () { document.body.classList.remove('daily-curse-reveal'); }, 2600);
+    const rect = target.getBoundingClientRect();
+    spawnPopAt({
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height * 0.08,
+      text: 'Daily curse found',
+      color: '#a56600',
+      slow: true
+    });
+    spawnEmojiBurst('🧿', 0, 0);
+    spawnEmojiBurst('🔥', 0, 0);
+    if (typeof window.confetti === 'function') {
+      const x = (rect.left + rect.right) / 2 / window.innerWidth;
+      const y = (rect.top + rect.bottom) / 2 / window.innerHeight;
+      const colors = ['#ff8a1f', '#ff3b1f', '#a07dff', '#ffd166', '#1a222c'];
+      [0, 260, 520].forEach(function (delay) {
+        setTimeout(function () {
+          window.confetti({
+            particleCount: 110,
+            spread: 115,
+            startVelocity: 48,
+            origin: { x: x, y: Math.max(0.1, y - 0.08) },
+            colors: colors,
+            scalar: 1.15
+          });
+        }, delay);
+      });
+    }
+  }
+
+  function applyDailyCurse(delta, action) {
+    if (!dailyFound()) return delta;
+    if (dailyCurse.id === 'tomato-surplus' && action === 'swipe-left' && delta > 0) return delta + 5;
+    if (dailyCurse.id === 'forbidden-sky' && action === 'swipe-up') return delta - 10;
+    if (dailyCurse.id === 'warm-fingers' && action === 'click' && delta > 0 && (state.combo.streak || 0) >= COMBO_MAX_STREAK) return delta + 1;
+    if (dailyCurse.id === 'mirror-face' && action === 'swipe-right' && delta > 0) return delta + 5;
+    return delta;
+  }
+
+  function scoreAction(delta, lifetimeDelta, action) {
+    const now = Date.now();
+    state.combo = Object.assign({ streak: 0, best: 0, lastAt: 0, lastAction: null }, state.combo || {});
+    const positive = delta > 0;
+    const rapid = positive && state.combo.lastAt && now - state.combo.lastAt <= COMBO_WINDOW;
+    const alternatingGesture = rapid &&
+      action.indexOf('swipe-') === 0 &&
+      state.combo.lastAction &&
+      state.combo.lastAction.indexOf('swipe-') === 0 &&
+      state.combo.lastAction !== action;
+
+    if (positive) {
+      state.combo.streak = rapid ? state.combo.streak + 1 : 1;
+      if (alternatingGesture) state.combo.streak += 1;
+      state.combo.best = Math.max(state.combo.best || 0, state.combo.streak);
+      state.combo.lastAt = now;
+      state.combo.lastAction = action;
+    } else {
+      state.combo.streak = 0;
+      state.combo.lastAt = 0;
+      state.combo.lastAction = action;
+    }
+
+    maybeFindDailyCurse(action);
+
+    const baseDelta = applyDailyCurse(delta, action);
+    const baseLifetimeDelta = baseDelta === delta ? lifetimeDelta : baseDelta;
+    let adjustedDelta = baseDelta;
+    let adjustedLifetimeDelta = baseLifetimeDelta;
+    let bonus = 0;
+    if (positive && state.combo.streak >= COMBO_MAX_STREAK) {
+      bonus = Math.max(1, Math.ceil(Math.abs(baseDelta) * 0.5));
+      adjustedDelta += bonus;
+      adjustedLifetimeDelta += bonus;
+    }
+
+    state.clicks += adjustedDelta;
+    state.lifetime += adjustedLifetimeDelta;
+    updatePowerBar();
+
+    if (state.combo.streak === 4) addLog('The face noticed the rhythm.', true);
+    else if (state.combo.streak === 8) addLog('The power bar became a little too honest.', true);
+    else if (alternatingGesture) addLog('The face accepted the alternating current.', false);
+
+    return {
+      delta: adjustedDelta,
+      lifetimeDelta: adjustedLifetimeDelta,
+      baseDelta: baseDelta,
+      baseLifetimeDelta: baseLifetimeDelta,
+      bonus: bonus,
+      streak: state.combo.streak
+    };
+  }
+
+  function updatePowerBar() {
+    if (!powerEl || !powerFillEl) return;
+    state.combo = Object.assign({ streak: 0, best: 0, lastAt: 0, lastAction: null }, state.combo || {});
+    const elapsed = state.combo.lastAt ? Date.now() - state.combo.lastAt : COMBO_WINDOW;
+    const heat = Math.max(0, 1 - (elapsed / COMBO_WINDOW));
+    const streakLevel = Math.min(1, (state.combo.streak || 0) / COMBO_MAX_STREAK);
+    const level = Math.max(heat * streakLevel, 0);
+    powerEl.classList.toggle('is-active', level > 0.08);
+    powerEl.classList.toggle('is-hot', (state.combo.streak || 0) >= 4 && level > 0.2);
+    powerEl.classList.toggle('is-maxed', (state.combo.streak || 0) >= COMBO_MAX_STREAK && level > 0.85);
+    powerFillEl.style.transform = 'scaleX(' + level.toFixed(3) + ')';
+    if (level <= 0 && state.combo.streak) {
+      state.combo.streak = 0;
+      state.combo.lastAt = 0;
+      state.combo.lastAction = null;
+    }
+  }
+
   function triggerSwipe(dir) {
     target.classList.remove('swipe-right', 'swipe-left', 'swipe-up', 'swipe-down');
     void target.offsetWidth;
@@ -240,10 +472,13 @@
       consecutiveUps = 0;
     }
 
-    state.clicks = state.clicks + delta;
-    state.lifetime = state.lifetime + lifetimeDelta;
+    const scored = scoreAction(delta, lifetimeDelta, 'swipe-' + dir);
+    if (scored.baseDelta !== delta) {
+      const prefix = scored.delta > 0 ? '+' : '';
+      popText = prefix + scored.baseDelta + ' Cursed!';
+    }
     bumpStat(clicksEl);
-    if (lifetimeDelta) bumpStat(lifetimeEl);
+    if (scored.lifetimeDelta) bumpStat(lifetimeEl);
     updateClicksDisplay();
     updateLifetimeDisplay();
     checkAchievements();
@@ -257,8 +492,10 @@
       color: popColor
     });
     spawnEmojiBurst(emoji, signX, signY);
+    if (scored.bonus) spawnPowerBurst(scored.bonus);
 
     if (rage) {
+      addLog('Rage opened its mouth.', true);
       triggerRage(rect);
     } else if (typeof window.confetti === 'function' && (dir === 'right' || dir === 'left')) {
       const x = (rect.left + rect.right) / 2 / window.innerWidth;
@@ -273,6 +510,8 @@
           : ['#e64545', '#ffb3b3', '#ffffff']
       });
     }
+    if (dir === 'left') addLog('A tomato has been accepted.', false);
+    if (dir === 'down') addLog('The face disliked the descent.', false);
   }
 
   function triggerRage(rect) {
@@ -346,17 +585,42 @@
     setTimeout(function () { pop.remove(); }, opts.slow ? 1800 : 900);
   }
 
+  function spawnPowerBurst(bonus) {
+    if (!powerEl) return;
+    powerEl.classList.remove('burst');
+    void powerEl.offsetWidth;
+    powerEl.classList.add('burst');
+    if (!feedbackEl) return;
+    const fbRect = feedbackEl.getBoundingClientRect();
+    const rect = powerEl.getBoundingClientRect();
+    const count = Math.max(1, Math.min(5, bonus));
+    for (let i = 0; i < count; i++) {
+      const pop = document.createElement('span');
+      pop.className = 'pop pop--power';
+      pop.textContent = bonus === 1 ? '+1' : '+' + Math.ceil(bonus / count);
+      pop.style.left = (rect.right - fbRect.left + (Math.random() * 18 - 4)) + 'px';
+      pop.style.top = (rect.top + rect.height / 2 - fbRect.top + (Math.random() * 18 - 9)) + 'px';
+      pop.style.setProperty('--dx', (28 + Math.random() * 86) + 'px');
+      pop.style.setProperty('--dy', (-52 - Math.random() * 78) + 'px');
+      pop.style.setProperty('--rot', (Math.random() * 34 - 17) + 'deg');
+      pop.style.setProperty('--delay', (i * 35) + 'ms');
+      feedbackEl.appendChild(pop);
+      setTimeout(function () { pop.remove(); }, 950 + i * 35);
+    }
+    setTimeout(function () { powerEl.classList.remove('burst'); }, 520);
+  }
+
   function onClick(e) {
     if (Date.now() < suppressClickUntil) return;
     consecutiveUps = 0;
-    state.clicks += 1;
-    state.lifetime += 1;
+    const scored = scoreAction(1, 1, 'click');
     target.classList.add('has-clicked');
 
     bumpStat(clicksEl);
     bumpStat(lifetimeEl);
 
-    spawnPop(e);
+    spawnPop(e, scored);
+    if (scored.bonus) spawnPowerBurst(scored.bonus);
     spinIfDue();
     confettiIfDue();
     checkAchievements();
@@ -369,9 +633,12 @@
     state.clicks = 0;
     state.unlocked = [];
     state.secretClicks = 0;
+    state.combo = { streak: 0, best: state.combo && state.combo.best || 0, lastAt: 0, lastAction: null };
     consecutiveUps = 0;
+    addLog('The run was reset. The face did not forget.', true);
     persist();
     updateClicksDisplay();
+    updatePowerBar();
     achList.querySelectorAll('li[data-threshold]').forEach(li => li.classList.remove('unlocked'));
     target.classList.remove('has-clicked');
   }
@@ -409,6 +676,7 @@
     if (delta !== 0) {
       state.clicks += delta;
       state.lifetime += delta;
+      addLog(delta > 0 ? 'The score leaked secret points.' : 'The score bit back.', true);
       bumpStat(clicksEl);
       bumpStat(lifetimeEl);
       updateClicksDisplay();
@@ -425,7 +693,7 @@
     el.classList.add('bump');
   }
 
-  function spawnPop(e) {
+  function spawnPop(e, scored) {
     const rect = target.getBoundingClientRect();
     const fbRect = feedbackEl.getBoundingClientRect();
     const x = (e && e.clientX !== undefined ? e.clientX : rect.left + rect.width / 2) - fbRect.left;
@@ -434,12 +702,15 @@
     pop.className = 'pop';
     pop.style.left = x + 'px';
     pop.style.top = y + 'px';
-    pop.textContent = labelForClick(state.clicks);
+    pop.textContent = labelForClick(state.clicks, scored);
     feedbackEl.appendChild(pop);
     setTimeout(() => pop.remove(), 900);
   }
 
-  function labelForClick(n) {
+  function labelForClick(n, scored) {
+    if (scored && scored.baseDelta > 1) {
+      return '+' + scored.baseDelta;
+    }
     if (n === 1) return 'Hello!';
     if (n > 0 && n % 100 === 0) return n.toLocaleString() + '!';
     if (n > 0 && n % 25 === 0) return 'Combo ' + n + '!';
@@ -484,10 +755,17 @@
           li.classList.add('unlocked', 'just-unlocked');
           setTimeout(() => li.classList.remove('just-unlocked'), 700);
         }
-        if (t === 100) triggerUnicornFlyover();
+        addLog('A threshold clicked open: ' + t + '.', t === 1 || t === 100);
+        if (t === 100) {
+          addLog('The unicorn clause executed successfully.', true);
+          triggerUnicornFlyover();
+        }
       }
     });
-    if (state.clicks <= -100) unlockSecret('abyss');
+    if (state.clicks <= -100 && !(state.unlockedSecrets || []).includes('abyss')) {
+      addLog('The abyss updated your file.', true);
+      unlockSecret('abyss');
+    }
   }
 
   function unlockSecret(id) {

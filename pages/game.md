@@ -10,7 +10,7 @@ menus:
 
 <section class="headshot-game" aria-labelledby="game-heading">
   <header class="headshot-game__intro">
-    <h1 id="game-heading">Behold, a face.</h1>
+    <h1 id="game-heading">Behold, a face<button type="button" id="game-log-toggle" class="headshot-game__period-toggle" aria-label="Open the record" aria-expanded="false" aria-controls="game-log">.</button></h1>
     <p>Strange things may occur.</p>
   </header>
 
@@ -24,6 +24,10 @@ menus:
         <span class="stat__label">Lifetime</span>
         <span class="stat__value" id="game-lifetime">0</span>
       </div>
+    </div>
+
+    <div class="headshot-game__power" id="game-power" aria-hidden="true">
+      <span class="headshot-game__power-fill" id="game-power-fill"></span>
     </div>
 
     <button class="headshot-game__target" id="game-target" type="button" aria-label="Click or swipe my headshot">
@@ -49,11 +53,16 @@ menus:
     <li data-threshold="100"><span class="ach__icon">💯</span><span class="ach__text"><strong>Centurion</strong><em>100 clicks</em></span></li>
     <li class="ach--secret" data-secret="rage"><span class="ach__icon">⚡</span><span class="ach__text"><strong>Rage Unlocked</strong><em>Secret</em></span></li>
     <li class="ach--secret" data-secret="abyss"><span class="ach__icon">💀</span><span class="ach__text"><strong>Rock Bottom</strong><em>Secret</em></span></li>
+    <li class="ach--secret" data-secret="daily"><span class="ach__icon">🧿</span><span class="ach__text"><strong>Daily Curse</strong><em>Secret</em></span></li>
   </ul>
 
   <div class="headshot-game__controls">
     <button type="button" id="game-reset" class="headshot-game__reset">Reset run</button>
   </div>
+
+  <aside class="headshot-game__log" id="game-log" hidden>
+    <ol id="game-log-list"></ol>
+  </aside>
 </section>
 
 <link rel="stylesheet" href="{{ '/assets/css/game.css' | relative_url }}">
