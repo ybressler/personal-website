@@ -14,6 +14,7 @@
   const logToggle = document.getElementById('game-log-toggle');
   const logPanel = document.getElementById('game-log');
   const logList = document.getElementById('game-log-list');
+  const headshotImg = document.getElementById('game-headshot');
 
   const state = loadState();
   const thresholds = Array.from(achList.querySelectorAll('li'))
@@ -27,9 +28,11 @@
     { id: 'warm-fingers', name: 'Warm Fingers', trigger: 'combo-4' },
     { id: 'mirror-face', name: 'Mirror Face', trigger: 'swipe-right' }
   ];
+  const HEADSHOT_THRESHOLDS = [100, 200, 300, 400, 500, 600, 700, 800, 1000];
+  const headshotSources = collectHeadshotSources();
+  const preloadedHeadshots = {};
   const dailyCurse = setupDailyCurse();
-
-  render();
+  preloadHellHeadshots();
 
   const SWIPE_THRESHOLD = 90;
   const CLICK_MAX_MOVE = 8;
@@ -48,6 +51,7 @@
     if (document.hidden) endDrag();
   });
   setInterval(updatePowerBar, 120);
+  render();
 
   function loadState() {
     try {
@@ -74,6 +78,29 @@
   }
   function persist() {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function collectHeadshotSources() {
+    if (!headshotImg) return {};
+    const sources = { normal: headshotImg.dataset.normalSrc || headshotImg.src };
+    HEADSHOT_THRESHOLDS.forEach(function (threshold) {
+      const src = headshotImg.getAttribute('data-hell-' + threshold);
+      if (src) sources[threshold] = src;
+    });
+    return sources;
+  }
+
+  function preloadHeadshot(src) {
+    if (!src || preloadedHeadshots[src]) return;
+    preloadedHeadshots[src] = true;
+    const img = new Image();
+    img.src = src;
+  }
+
+  function preloadHellHeadshots() {
+    HEADSHOT_THRESHOLDS.forEach(function (threshold) {
+      preloadHeadshot(headshotSources[threshold]);
+    });
   }
 
   function render() {
@@ -132,7 +159,25 @@
     document.body.style.setProperty('--hell-depth', (depth / 10).toFixed(2));
     document.body.style.setProperty('--hell-step', String(depth));
     document.body.classList.toggle('abyss-mode', depth >= 10);
+    updateHeadshotForDepth(depth);
     toggleHellMode(depth > 0);
+  }
+
+  function updateHeadshotForDepth(depth) {
+    if (!headshotImg) return;
+    const threshold = depth >= 10 ? 1000 : depth * 100;
+    const nextSrc = depth > 0 ? (headshotSources[threshold] || headshotSources[800] || headshotSources.normal) : headshotSources.normal;
+    if (!nextSrc || headshotImg.getAttribute('src') === nextSrc) return;
+    headshotImg.classList.remove('is-swapping');
+    card.classList.remove('is-corrupting');
+    void headshotImg.offsetWidth;
+    headshotImg.classList.add('is-swapping');
+    card.classList.add('is-corrupting');
+    headshotImg.src = nextSrc;
+    setTimeout(function () {
+      headshotImg.classList.remove('is-swapping');
+      card.classList.remove('is-corrupting');
+    }, 620);
   }
 
   function toggleHellMode(on) {

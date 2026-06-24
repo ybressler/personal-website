@@ -35,8 +35,23 @@ menus:
         <span class="swipe-label swipe-label--nope" aria-hidden="true">Nope</span>
         <span class="swipe-label swipe-label--like" aria-hidden="true">Like</span>
         <picture>
-          <source srcset="{{ '/images/yaakov-bressler-headshot.webp' | relative_url }}" type="image/webp">
-          <img src="{{ '/images/yaakov-bressler-headshot.jpeg' | relative_url }}" alt="Yaakov Bressler headshot" width="320" height="320" decoding="async">
+          <img
+            id="game-headshot"
+            src="{{ '/images/yaakov-bressler-headshot.jpeg' | relative_url }}"
+            alt="Yaakov Bressler headshot"
+            width="320"
+            height="320"
+            decoding="async"
+            data-normal-src="{{ '/images/yaakov-bressler-headshot.jpeg' | relative_url }}"
+            data-hell-100="{{ '/images/headshot-hell-100.jpeg' | relative_url }}"
+            data-hell-200="{{ '/images/headshot-hell-200.jpeg' | relative_url }}"
+            data-hell-300="{{ '/images/headshot-hell-300.jpeg' | relative_url }}"
+            data-hell-400="{{ '/images/headshot-hell-400.jpeg' | relative_url }}"
+            data-hell-500="{{ '/images/headshot-hell-500.jpeg' | relative_url }}"
+            data-hell-600="{{ '/images/headshot-hell-600.jpeg' | relative_url }}"
+            data-hell-700="{{ '/images/headshot-hell-700.jpeg' | relative_url }}"
+            data-hell-800="{{ '/images/headshot-hell-800.jpeg' | relative_url }}"
+            data-hell-1000="{{ '/images/headshot-hell-1000.jpeg' | relative_url }}">
         </picture>
       </span>
       <span class="headshot-game__hint">Click or swipe</span>

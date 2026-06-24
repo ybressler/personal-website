@@ -1,3 +1,39 @@
+(() => {
+    const STORAGE_KEY = 'headshotGame.v1';
+
+    function readClicks() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return 0;
+            const parsed = JSON.parse(raw);
+            return Number(parsed.clicks) || 0;
+        } catch (_) {
+            return 0;
+        }
+    }
+
+    function applySiteMood() {
+        if (!document.body) return;
+        const clicks = readClicks();
+        const depth = clicks <= -100 ? Math.min(10, Math.floor(Math.abs(clicks) / 100)) : 0;
+        document.body.style.setProperty('--hell-depth', (depth / 10).toFixed(2));
+        document.body.style.setProperty('--hell-step', String(depth));
+        document.body.classList.toggle('hell-mode', depth > 0);
+        document.body.classList.toggle('abyss-mode', depth >= 10);
+        if (!depth) {
+            document.body.style.removeProperty('--hell-depth');
+            document.body.style.removeProperty('--hell-step');
+        }
+    }
+
+    window.headshotGameApplySiteMood = applySiteMood;
+    if (document.body) applySiteMood();
+    document.addEventListener('DOMContentLoaded', applySiteMood);
+    window.addEventListener('storage', (event) => {
+        if (event.key === STORAGE_KEY) applySiteMood();
+    });
+})();
+
 document.addEventListener(
     "DOMContentLoaded",
     function() {
