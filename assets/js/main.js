@@ -21,43 +21,47 @@
         document.body.style.setProperty('--hell-step', String(depth));
         document.body.classList.toggle('hell-mode', depth > 0);
         document.body.classList.toggle('abyss-mode', depth >= 10);
-        updateHomeHeadshot(depth);
+        updateMoodHeadshots(depth);
         if (!depth) {
             document.body.style.removeProperty('--hell-depth');
             document.body.style.removeProperty('--hell-step');
         }
     }
 
-    function updateHomeHeadshot(depth) {
-        const img = document.getElementById('headshot-img');
-        if (!img) return;
-        const threshold = depth >= 10 ? 1000 : depth * 100;
-        const nextSrc = depth > 0
-            ? img.getAttribute('data-hell-' + threshold)
-            : img.getAttribute('data-normal-src');
-        if (!nextSrc || img.getAttribute('src') === nextSrc) return;
-        img.classList.remove('is-home-swapping');
-        void img.offsetWidth;
-        img.classList.add('is-home-swapping');
-        img.src = nextSrc;
-        setTimeout(() => img.classList.remove('is-home-swapping'), 620);
+    function moodHeadshots() {
+        return Array.from(document.querySelectorAll('img[data-normal-src][data-hell-100]'));
     }
 
-    function preloadHomeHeadshots() {
-        const img = document.getElementById('headshot-img');
-        if (!img) return;
-        HEADSHOT_THRESHOLDS.forEach((threshold) => {
-            const src = img.getAttribute('data-hell-' + threshold);
-            if (!src) return;
-            const preload = new Image();
-            preload.src = src;
+    function updateMoodHeadshots(depth) {
+        const threshold = depth >= 10 ? 1000 : depth * 100;
+        moodHeadshots().forEach((img) => {
+            const nextSrc = depth > 0
+                ? img.getAttribute('data-hell-' + threshold)
+                : img.getAttribute('data-normal-src');
+            if (!nextSrc || img.getAttribute('src') === nextSrc) return;
+            img.classList.remove('is-home-swapping', 'is-swapping');
+            void img.offsetWidth;
+            img.classList.add(img.id === 'game-headshot' ? 'is-swapping' : 'is-home-swapping');
+            img.src = nextSrc;
+            setTimeout(() => img.classList.remove('is-home-swapping', 'is-swapping'), 620);
+        });
+    }
+
+    function preloadMoodHeadshots() {
+        moodHeadshots().forEach((img) => {
+            HEADSHOT_THRESHOLDS.forEach((threshold) => {
+                const src = img.getAttribute('data-hell-' + threshold);
+                if (!src) return;
+                const preload = new Image();
+                preload.src = src;
+            });
         });
     }
 
     window.headshotGameApplySiteMood = applySiteMood;
     if (document.body) applySiteMood();
     document.addEventListener('DOMContentLoaded', () => {
-        preloadHomeHeadshots();
+        preloadMoodHeadshots();
         applySiteMood();
     });
     window.addEventListener('storage', (event) => {
