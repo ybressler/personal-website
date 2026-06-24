@@ -29,7 +29,8 @@
     }
 
     function moodHeadshots() {
-        return Array.from(document.querySelectorAll('img[data-normal-src][data-hell-100]'));
+        return Array.from(document.querySelectorAll('img[data-normal-src][data-hell-100]'))
+            .filter((img) => img.id !== 'game-headshot');
     }
 
     function updateMoodHeadshots(depth) {
@@ -41,7 +42,7 @@
             if (!nextSrc || img.getAttribute('src') === nextSrc) return;
             img.classList.remove('is-home-swapping', 'is-swapping');
             void img.offsetWidth;
-            img.classList.add(img.id === 'game-headshot' ? 'is-swapping' : 'is-home-swapping');
+            img.classList.add('is-home-swapping');
             img.src = nextSrc;
             setTimeout(() => img.classList.remove('is-home-swapping', 'is-swapping'), 620);
         });

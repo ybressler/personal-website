@@ -734,8 +734,8 @@ body.hell-mode {
 body.hell-mode .centered-container,
 body.hell-mode .regular-header,
 body.hell-mode footer {
-  filter: brightness(calc(1 - (var(--hell-depth, 0) * 0.28))) saturate(calc(1 + (var(--hell-depth, 0) * 0.9)));
-  transition: filter 0.5s ease;
+  opacity: calc(1 - (var(--hell-depth, 0) * 0.08));
+  transition: opacity 0.5s ease;
 }
 
 body.hell-mode .headshot-game__stats .stat,
@@ -802,12 +802,12 @@ body.abyss-mode::before {
   background:
     radial-gradient(circle at 50% 28%, rgba(255, 42, 14, 0.7) 0%, rgba(120, 0, 0, 0.72) 34%, rgba(0, 0, 0, 0.94) 100%),
     repeating-linear-gradient(110deg, rgba(255, 59, 31, 0.08) 0 2px, transparent 2px 10px);
-  animation: abyss-pulse 1.25s ease-in-out infinite;
+  animation: abyss-pulse 1.6s ease-in-out infinite;
 }
 
 @keyframes abyss-pulse {
-  0%, 100% { opacity: 0.72; filter: saturate(1.2); }
-  50%      { opacity: 1; filter: saturate(1.8); }
+  0%, 100% { opacity: 0.74; }
+  50%      { opacity: 0.96; }
 }
 
 .hell-demons {
@@ -830,9 +830,8 @@ body.abyss-mode::before {
 
 body.abyss-mode .hell-demon {
   filter:
-    drop-shadow(0 0 18px rgba(255, 120, 0, 0.95))
-    drop-shadow(0 0 34px rgba(255, 0, 0, 0.85))
-    drop-shadow(0 0 70px rgba(0, 0, 0, 0.9));
+    drop-shadow(0 0 16px rgba(255, 120, 0, 0.75))
+    drop-shadow(0 0 30px rgba(255, 0, 0, 0.55));
   animation-name: abyss-drift;
 }
 

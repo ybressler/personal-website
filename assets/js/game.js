@@ -58,7 +58,7 @@
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return defaults();
       const parsed = JSON.parse(raw);
-      return Object.assign(defaults(), parsed);
+      return normalizeState(Object.assign(defaults(), parsed));
     } catch (e) {
       return defaults();
     }
@@ -75,6 +75,21 @@
       dailyCurse: null,
       logs: []
     };
+  }
+  function normalizeState(next) {
+    next.clicks = Number.isFinite(Number(next.clicks)) ? Number(next.clicks) : 0;
+    next.lifetime = Number.isFinite(Number(next.lifetime)) ? Number(next.lifetime) : 0;
+    next.rageCount = Number.isFinite(Number(next.rageCount)) ? Number(next.rageCount) : 0;
+    next.secretClicks = Number.isFinite(Number(next.secretClicks)) ? Number(next.secretClicks) : 0;
+    next.unlocked = Array.isArray(next.unlocked) ? next.unlocked : [];
+    next.unlockedSecrets = Array.isArray(next.unlockedSecrets) ? next.unlockedSecrets : [];
+    next.logs = Array.isArray(next.logs) ? next.logs : [];
+    next.combo = Object.assign({ streak: 0, best: 0, lastAt: 0, lastAction: null }, next.combo || {});
+    next.combo.streak = Number.isFinite(Number(next.combo.streak)) ? Number(next.combo.streak) : 0;
+    next.combo.best = Number.isFinite(Number(next.combo.best)) ? Number(next.combo.best) : 0;
+    next.combo.lastAt = Number.isFinite(Number(next.combo.lastAt)) ? Number(next.combo.lastAt) : 0;
+    if (!next.dailyCurse || typeof next.dailyCurse !== 'object') next.dailyCurse = null;
+    return next;
   }
   function persist() {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
@@ -104,8 +119,7 @@
   }
 
   function render() {
-    state.combo = Object.assign({ streak: 0, best: 0, lastAt: 0, lastAction: null }, state.combo || {});
-    state.logs = Array.isArray(state.logs) ? state.logs : [];
+    normalizeState(state);
     updateClicksDisplay();
     updateLifetimeDisplay();
     updatePowerBar();
