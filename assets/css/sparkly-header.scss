@@ -178,6 +178,10 @@ section#sparkly-header{
       0 0 100px rgba(40, 91, 177, 0.4);
   }
 
+  .headshot img.is-home-swapping {
+    animation: home-headshot-corrupt 0.62s ease-out;
+  }
+
   @media only screen and (max-width: 768px) {
     .headshot img {
       width: 50vw;
@@ -225,6 +229,13 @@ section#sparkly-header{
     letter-spacing: 0.01em;
   }
 
+}
+
+@keyframes home-headshot-corrupt {
+  0%   { filter: saturate(1) contrast(1); transform: scale(1); }
+  24%  { filter: saturate(2.6) contrast(1.45) hue-rotate(-18deg); transform: scale(1.035) skewX(-1.2deg); }
+  48%  { filter: saturate(0.75) contrast(1.55); transform: scale(0.985) skewX(1deg); }
+  100% { filter: saturate(1) contrast(1); transform: scale(1); }
 }
 
 @keyframes hero-fade-in {

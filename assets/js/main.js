@@ -1,5 +1,6 @@
 (() => {
     const STORAGE_KEY = 'headshotGame.v1';
+    const HEADSHOT_THRESHOLDS = [100, 200, 300, 400, 500, 600, 700, 800, 1000];
 
     function readClicks() {
         try {
@@ -20,15 +21,45 @@
         document.body.style.setProperty('--hell-step', String(depth));
         document.body.classList.toggle('hell-mode', depth > 0);
         document.body.classList.toggle('abyss-mode', depth >= 10);
+        updateHomeHeadshot(depth);
         if (!depth) {
             document.body.style.removeProperty('--hell-depth');
             document.body.style.removeProperty('--hell-step');
         }
     }
 
+    function updateHomeHeadshot(depth) {
+        const img = document.getElementById('headshot-img');
+        if (!img) return;
+        const threshold = depth >= 10 ? 1000 : depth * 100;
+        const nextSrc = depth > 0
+            ? img.getAttribute('data-hell-' + threshold)
+            : img.getAttribute('data-normal-src');
+        if (!nextSrc || img.getAttribute('src') === nextSrc) return;
+        img.classList.remove('is-home-swapping');
+        void img.offsetWidth;
+        img.classList.add('is-home-swapping');
+        img.src = nextSrc;
+        setTimeout(() => img.classList.remove('is-home-swapping'), 620);
+    }
+
+    function preloadHomeHeadshots() {
+        const img = document.getElementById('headshot-img');
+        if (!img) return;
+        HEADSHOT_THRESHOLDS.forEach((threshold) => {
+            const src = img.getAttribute('data-hell-' + threshold);
+            if (!src) return;
+            const preload = new Image();
+            preload.src = src;
+        });
+    }
+
     window.headshotGameApplySiteMood = applySiteMood;
     if (document.body) applySiteMood();
-    document.addEventListener('DOMContentLoaded', applySiteMood);
+    document.addEventListener('DOMContentLoaded', () => {
+        preloadHomeHeadshots();
+        applySiteMood();
+    });
     window.addEventListener('storage', (event) => {
         if (event.key === STORAGE_KEY) applySiteMood();
     });

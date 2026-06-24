@@ -14,10 +14,24 @@
             </svg>
             <div class="prompt-text">Click Me</div>
           </div>
-          <picture>
-            <source srcset="images/yaakov-bressler-headshot.webp" type="image/webp">
-            <img id="headshot-img" src="images/yaakov-bressler-headshot.jpeg" alt="My Headshot" width="800" height="800" fetchpriority="high" decoding="async">
-          </picture>
+          <img
+            id="headshot-img"
+            src="{{ '/images/yaakov-bressler-headshot.jpeg' | relative_url }}"
+            alt="My Headshot"
+            width="800"
+            height="800"
+            fetchpriority="high"
+            decoding="async"
+            data-normal-src="{{ '/images/yaakov-bressler-headshot.jpeg' | relative_url }}"
+            data-hell-100="{{ '/images/headshot-hell-100.jpeg' | relative_url }}"
+            data-hell-200="{{ '/images/headshot-hell-200.jpeg' | relative_url }}"
+            data-hell-300="{{ '/images/headshot-hell-300.jpeg' | relative_url }}"
+            data-hell-400="{{ '/images/headshot-hell-400.jpeg' | relative_url }}"
+            data-hell-500="{{ '/images/headshot-hell-500.jpeg' | relative_url }}"
+            data-hell-600="{{ '/images/headshot-hell-600.jpeg' | relative_url }}"
+            data-hell-700="{{ '/images/headshot-hell-700.jpeg' | relative_url }}"
+            data-hell-800="{{ '/images/headshot-hell-800.jpeg' | relative_url }}"
+            data-hell-1000="{{ '/images/headshot-hell-1000.jpeg' | relative_url }}">
         </div>
       </div>
 
