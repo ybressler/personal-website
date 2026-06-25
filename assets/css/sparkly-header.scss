@@ -28,7 +28,7 @@ body.hell-mode {
   background:
     linear-gradient(rgba(26, 8, 8, calc(var(--hell-depth, 0) * 0.62)), rgba(26, 8, 8, calc(var(--hell-depth, 0) * 0.62))),
     #fff;
-  transition: background 0.5s ease, color 0.5s ease;
+  transition: color 0.5s ease;
 }
 
 body.hell-mode .centered-container,

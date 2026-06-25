@@ -40,6 +40,7 @@
   const drag = { active: false, startX: 0, startY: 0, dx: 0, dy: 0 };
   let suppressClickUntil = 0;
   let consecutiveUps = 0;
+  let hellDemonTimer = null;
 
   target.addEventListener('pointerdown', onPointerDown);
   target.addEventListener('click', onClick);
@@ -109,7 +110,9 @@
     if (!src || preloadedHeadshots[src]) return;
     preloadedHeadshots[src] = true;
     const img = new Image();
+    img.decoding = 'async';
     img.src = src;
+    if (img.decode) img.decode().catch(function () {});
   }
 
   function preloadHellHeadshots() {
@@ -184,10 +187,11 @@
     if (!nextSrc || headshotImg.getAttribute('src') === nextSrc) return;
     headshotImg.classList.remove('is-swapping');
     card.classList.remove('is-corrupting');
-    void headshotImg.offsetWidth;
-    headshotImg.classList.add('is-swapping');
-    card.classList.add('is-corrupting');
     headshotImg.src = nextSrc;
+    requestAnimationFrame(function () {
+      headshotImg.classList.add('is-swapping');
+      card.classList.add('is-corrupting');
+    });
     setTimeout(function () {
       headshotImg.classList.remove('is-swapping');
       card.classList.remove('is-corrupting');
@@ -199,13 +203,23 @@
     if (on === isOn) return;
     document.body.classList.toggle('hell-mode', on);
     if (on) {
-      spawnHellDemons();
+      scheduleHellDemons();
     } else {
       document.body.style.removeProperty('--hell-depth');
       document.body.style.removeProperty('--hell-step');
       document.body.classList.remove('abyss-mode');
+      if (hellDemonTimer) clearTimeout(hellDemonTimer);
+      hellDemonTimer = null;
       removeHellDemons();
     }
+  }
+
+  function scheduleHellDemons() {
+    if (hellDemonTimer || document.getElementById('hell-demons')) return;
+    hellDemonTimer = setTimeout(function () {
+      hellDemonTimer = null;
+      spawnHellDemons();
+    }, 650);
   }
 
   function spawnHellDemons() {
@@ -215,7 +229,7 @@
     container.className = 'hell-demons';
     container.setAttribute('aria-hidden', 'true');
     const glyphs = ['👹', '😈', '👺', '💀', '🔥'];
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 5; i++) {
       const d = document.createElement('span');
       d.className = 'hell-demon';
       d.textContent = glyphs[i % glyphs.length];
